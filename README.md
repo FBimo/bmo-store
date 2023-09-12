@@ -246,7 +246,7 @@ Tautan aplikasi: [Marpellus Cenep](https://marpellus-cenep.adaptable.app)
     
 
 ## Bagan _Request Client_
-![bagan_request_client](C:\Users\fzlbm\UI\Kuliah\Semester_3\PBP\Tugas\django-request-flow.png)
+![django-request-flow](https://github.com/FBimo/marpellus-cenep/assets/119420957/9b1d3f76-0013-4b6f-a539-8974df6099a5)
 
 - `urls.py`, sebagai tempat perkumpulan URL. Django akan mencari melewati _file_ ini untuk menemukan URL yang paling cocok sesuai dengan permintaan.
 - `views.py`, sebagai jembatan penghubung dengan dua _file_ lainnya, yaitu `models.py` dan `template`. Setelah mendapat HttpRequest dari URL yang berkaitan, `views.py` dapat meminta data yang diperlukan melalui `models.py` dan dapat melakukan _render_ HTML menggunakan `template` agar dapat disajikan kepada pengguna.
