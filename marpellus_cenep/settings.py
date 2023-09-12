@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-ROOT_URLCONF = 'bmo_store.urls'
+ROOT_URLCONF = 'marpellus_cenep.urls'
 
 TEMPLATES = [
     {
@@ -68,7 +68,7 @@ TEMPLATES = [
     },
 ]
 
-WSGI_APPLICATION = 'bmo_store.wsgi.application'
+WSGI_APPLICATION = 'marpellus_cenep.wsgi.application'
 
 
 # Database

@@ -7,5 +7,9 @@ class Item(models.Model):
     date_added = models.DateField(auto_now_add=True)
     price = models.IntegerField()
     description = models.TextField()
+    atk_power = models.IntegerField()
+
+    def get_desc(self):
+       return self.description
 
     
