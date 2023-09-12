@@ -10,12 +10,16 @@
 
 3. Setelah itu, saya melakukan konfigurasi awal _user_ dan _email_ dengan perintah,
 
-    `git config user.name <nama_user>`
-    `git config user.email <nama_email>`
+    ```
+    git config user.name <nama_user>
+    git config user.email <nama_email>
+    ```
 
 4. Selanjutnya saya memeriksa terlebih dahulu bahwa konfigurasi yang dilakukan sudah terdaftar dengan perintah,
 
-    `git config --list --local`
+    ```
+    git config --list --local
+    ```
 
 5. Apabila _user_ dan _email_ yang sudah dikonfigurasi sebelumnya muncul di keluaran perintah sebelumnya, saya dapat melanjutkan langkah berikutnya, yaitu membuat repositori baru di GitHub dengan nama repositori yang sama seperti repositori proyek lokal.
 
@@ -23,66 +27,86 @@
 
 7. Setelah itu, perlu dilakukan penghubungan antara repositori lokal di komputer dengan repositori di GitHub dengan cara menggunakan perintah,
 
-    `git branch -M main`
+    ```
+    git branch -M main
+    ```
 
     > Perintah di atas berguna untuk membuat cabang atau _branch_ utama baru yang bernama **main**
 
     Setelah itu, perlu dijalankan perintah,
 
-    `git remote add origin <URL_RepoGitHub>`
+    ```
+    git remote add origin <URL_RepoGitHub>
+    ```
 
     > Perintah di atas berguna untuk menghubungkan repositori di GitHub dengan repositori lokal.
 
 8. Setelah kedua repositori terhubung, perlu dilakukan penyimpanan atas pembaruan yang sudah dilakukan di repositori lokal dengan perintah,
 
-    `git add .`
+    ```
+    git add .
+    ```
 
     > Perintah di atas berguna untuk menandai semua file yang berubah di dalam repositori lokal yang nantinya akan dilakukan _commit_. 
     
     Setelah itu, dapat dijalankan,
 
-    `git status`
+    ```
+    git status
+    ```
 
     > Perintah di atas berguna untuk memeriksa status _file_ apa saja yang sudah dimodifikasi dan ditandai. 
     
     Setelah itu dapat dilakukan perintah,
 
-    `git commit -m <pesan_commit>`
+    ```
+    git commit -m <pesan_commit>
+    ```
 
     Perintah di atas berguna untuk melakukan _commit_ atas perubahan yang terjadi di repositori lokal. Berikutnya dapat dilakukan,
 
-    `git push -u origin main`
+    ```
+    git push -u origin main
+    ```
 
     > Perintah di atas berguna untuk menyimpan perubahan-perubahan yang terjadi di repositori lokal ke repositori GitHub, termasuk jika adanya penambahan _file_ baru.
 
 9. Setelah penyimpanan berhasil, saya membuat _virtual environment_ dengan menjalankan perintah,
 
-    `python -m venv env`
+    ```
+    python -m venv env
+    ```
 
     > Perintah di atas berguna untuk membuat _virtual environment_. Hal ini berguna untuk mengisolasi _package_ serta _dependencies_ dari aplikasi sehingga tidak bertabrakan dengan versi lain yang ada pada komputer lokal.
 
 10. Setelah itu, saya perlu mengaktifkan _virtual environment_ dengan menjalankan,
 
-    `env\Scripts\activate.bat`
+    ```
+    env\Scripts\activate.bat
+    ```
 
 11. Berikutnya saya menambahkan `requirements.txt` di dalam direktori proyek dengan isi sebagai berikut,
 
-        `django
+        django
         gunicorn
         whitenoise
         psycopg2-binary
         requests
-        urllib3`
+        urllib3
 
     Setelah itu, saya  melakukan perintah berikut,
 
-    `pip install -r requirements.txt`
+    ```
+    pip install -r requirements.txt
+    ```
 
     > Perintah di atas berguna untuk memasang _dependencies_ di dalam direktori proyek
 
 12. Selanjutnya, saya dapat membuat proyek Django baru dengan perintah,
 
-    `django-admin startproject <nama_proyek> .`
+    ```
+    django-admin startproject <nama_proyek> .
+    ```
 
 ### Membuat Aplikasi dengan Nama 'main'
 
@@ -90,7 +114,9 @@
 
 2. Selanjutnya saya membuat aplikasi **main** dengan menjalankan perintah,
 
-    `python manage.py startapp main`
+    ```
+    python manage.py startapp main
+    ```
 
     > Setelah perintah di atas dijalankan, di dalam direktori proyek akan ada sebuah direktori baru bernama **main**, direktori inilah yang berisi struktur dasar dari aplikasi **main**.
 
@@ -98,11 +124,13 @@
 
 - Mendaftarkan aplikasi **main** ke dalam proyek dengan menambahkan '**main**' ke dalam daftar aplikasi yang ada di bagian `INSTALLED_APPS` pada `settings.py` seperti kode di bawah ini,
 
+    ```
     INSTALLED_APPS = [
         ...,
         'main',
         ...
     ]
+    ```
     
 - Membuat dan mengisi _file_ `main.html` untuk membuat struktur dan tampilan dasar pada halaman _web_.
 
@@ -110,19 +138,25 @@
 
 - Membuat migrasi model agar Django dapat melacak pembaruan yang terjadi di `models.py` dengan perintah,
 
-    `python manage.py makemigrations`
+    ```
+    python manage.py makemigrations
+    ```
     
     > Perintah di atas berguna untuk menciptakan berkas migrasi berupa perubahan model. 
     
     Setelah itu perlu menjalankan perintah,
 
-    `python manage.py migrate`
+    ```
+    python manage.py migrate
+    ```
     
     > Perintah di atas berguna untuk mengaplikasikan perubahan yang terjadi pada model ke basis data.
 
 - Mengintegrasikan komponen `views.py` yang dapat menangani bagaimana data yang dikelola model ditampilkan kepada pengguna dengan menambahkan kode awal sebagai berikut,
 
-    `from django.shortcuts import render`
+    ```
+    from django.shortcuts import render
+    ```
     
     > Kode di atas berguna untuk mengimpor fungsi `render` yang berfungsi untuk melakukan _render_ tampilan HTML dengan menggunakan data yang diberikan.
     
