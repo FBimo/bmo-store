@@ -289,3 +289,38 @@ Contoh _framework_ yang menggunakan MVT adalah Django.
 - `ViewModel`, di satu sisi adalah abstraksi dari `View`, lalu sisi yang lain sebagai penyedia pembungkus model data yang akan ditautkan. `ViewModel` terdiri dari `Model` yang diubah menjadi `View` dan berisi perintah yang dapat digunakan oleh `View` untuk memengaruhi `Model`.
 
 Contoh _framework_ yang menggunakan MVVM adalah WPF.
+
+## Bonus
+Berikut merupakan implementasi saya dalam melakukan _testing_ dasar lainnya,
+
+    ```
+    from django.test import TestCase, Client
+    from main.models import Item
+
+    #another test
+    def setUp(self):
+        Item.objects.create(name="sunspot", amount=1, price=5000, description='Gain atk power with unspent energy', atk_power=50)
+        Item.objects.create(name="hawkeye", amount=1, price=5000, description='Gain 3 atk power if you play card here next turn', atk_power=45)
+    
+    def test_get_desc(self):
+        sunspot = Item.objects.get(name="sunspot")
+        hawkeye = Item.objects.get(name="hawkeye")
+        self.assertEqual(sunspot.get_desc(), "Gain atk power with unspent energy")
+        self.assertEqual(hawkeye.get_desc(), "Gain 3 atk power if you play card here next turn")
+    ```
+
+_Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek `Item` baru dan menjalankan suatu fungsi yang memanggil salah satu atributnya, dalam hal ini adalah atribut `description`. Di bawah ini merupakan hasil dari tesnya,
+
+    ```
+    (env) PS C:\Users\fzlbm\UI\Kuliah\Semester_3\PBP\github\marpellus-cenep> python manage.py test
+    Found 3 test(s).
+    Creating test database for alias 'default'...
+    System check identified no issues (0 silenced).
+    ...
+    ----------------------------------------------------------------------
+    Ran 3 tests in 0.056s
+
+    OK
+    Destroying test database for alias 'default'...
+    ```
+
