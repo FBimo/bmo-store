@@ -652,4 +652,24 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
 
 ## Bonus
-Berikut merupakan tangkapan layar aplikasi yang terdapat petunjuk mengenai berapa banyak `Card` yang sudah ditambahkan ke dalam aplikasi. 
+Berikut merupakan tangkapan layar implementasi fungsi dan aplikasi yang terdapat petunjuk mengenai berapa banyak `Card` yang sudah ditambahkan ke dalam aplikasi.
+
+    def show_main(request):
+        cards = Card.objects.all()
+    
+        total_cards = 0
+        for card in cards:
+            total_cards += 1
+    
+        context = {
+            'my_app': 'Marpellus Cenep',
+            'name': 'FBmo',
+            'class': 'PBP C',
+            'cards': cards,
+            'total_cards': total_cards
+        }
+    
+        return render(request, "main.html", context)
+
+![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/2cb67804-f900-44e4-a33a-83f23466718b)
+
