@@ -1,6 +1,46 @@
-<h1><b>{{my_app}}</b></h1>
+{% extends 'base.html' %}
 
-<h5>Name: </h5>
-<p>{{ name }}<p>
-<h5>Class: </h5>
-<p>{{ class }}<p>
+{% block content %}
+    <h1><b>{{my_app}}</b></h1>
+
+    <h5>Name: </h5>
+    <p>{{ name }}<p>
+    <h5>Class: </h5>
+    <p>{{ class }}<p>
+
+        <P>Kamu menyimpan {{total_cards}} kartu pada aplikasi ini</P>
+
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>Price</th>
+                <th>Power</th>
+                <th>Energy Cost</th>
+                <th>Description</th>
+                <th>Date Added</th>
+            </tr>
+        
+            {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+        
+            {% for card in cards %}
+                <tr>
+                    <td>{{ card.name }}</td>
+                    <td>{{ card.amount }}</td>
+                    <td>{{ card.price }}</td>
+                    <td>{{ card.power }}</td>
+                    <td>{{ card.energy_cost }}</td>
+                    <td>{{ card.description }}</td>
+                    <td>{{ card.date_added }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+        
+        <br />
+        
+        <a href="{% url 'main:create_product' %}">
+            <button>
+                Add New Card
+            </button>
+        </a>
+{% endblock content %}

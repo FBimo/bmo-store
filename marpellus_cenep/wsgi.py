@@ -1,5 +1,5 @@
 """
-WSGI config for bmo_store project.
+WSGI config for marpellus_cenep project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

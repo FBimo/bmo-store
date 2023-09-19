@@ -1,5 +1,5 @@
 """
-ASGI config for bmo_store project.
+ASGI config for marpellus_cenep project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 

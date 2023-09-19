@@ -322,5 +322,296 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     OK
     Destroying test database for alias 'default'...
-    
 
+# Tugas 3 PBP 2023
+
+## Implementasi Checklist
+
+### Membuat Form Input Data
+1. Sebelum saya membuat sebuah _form_ untuk menginput data baru ke dalam aplikasi, saya perlu membuat kerangka views sebagai _template_ dari sebuah laman di situs agar dapat mengurangi menulis kode secara berulang
+
+2. Berikut merupakan kode `base.html` yang diletakkan pada folder `templates` di _root folder_,
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        {% block meta %}
+        {% endblock meta %}
+    </head>
+
+    <body>
+        HEADER
+        {% block content %}
+        {% endblock content %}
+        <br/><br/>
+        FOOTER
+    </body>
+</html>
+
+3. Agar `base.html` terdeteksi sebagai _template_, saya perlu membuka `settings.py` pada subdirektori `marpellus_cenep` dan sedikit memodifikasi bagian `TEMPLATES` menjadi seperti ini,
+
+...
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
+        'APP_DIRS': True,
+        ...
+    }
+]
+...
+
+4. Setelah itu, saya perlu mengunjungi subdirektori `templates` yang ada di di direktori `main` untuk mengubah sedikit `main.html`,
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1><b>{{my_app}}</b></h1>
+
+    <h5>Name: </h5>
+    <p>{{ name }}<p>
+    <h5>Class: </h5>
+    <p>{{ class }}<p>
+
+    ...
+{% endblock content %}
+
+> dengan adanya `{% extends 'base.html' %}`, `main.html` sekarang sudah menggunakan `base.html` sebagai _template_.
+
+5. Selanjutnya saya dapat langsung membuat `forms.py` pada direktori `main` sebagai struktur _form_ yang dapat menerima data produk baru dengan kode,
+
+from django.forms import ModelForm
+from main.models import Card
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Card
+        fields = ["name", "amount", "price", "power", "energy_cost", "description"]
+
+Ada beberapa istilah penting yang perlu diperhatikan, seperti
+- `model = Card` berfungsi untuk menunjukkan model yang digunakan di _form_.
+- `fields = ["name", "amount", "price", "power", "energy_cost", "description"]` merupakan atribut-atribut yang dimiliki oleh model `Card`. 
+
+### Modifikasi 'views' dan _routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
+
+1. Pada _file_ `views.py` di foler `main`, perlu ditambahkan kode berikut,
+
+from django.http import HttpResponseRedirect
+from main.forms import ProductForm
+from main.models import Card
+from django.urls import reverse
+
+2. Setelah itu saya membuat fungsi baru dengan nama `create_product` yang menerima parameter `request` untuk menghasilkan formulir yang dapat menambahkan data produk secara otomatis ketikad ata sudah di-_submit_ melalui _form_.
+
+def create_product(request):
+    form = ProductForm(request.POST or None)
+
+    if form.is_valid() and request.method == "POST":
+        form.save()
+        return HttpResponseRedirect(reverse('main:show_main'))
+
+    context = {'form': form}
+    return render(request, "create_product.html", context)
+
+Ada beberapa istilah penting yang perlu diperhatikan, seperti
+- `form = ProductForm(request.POST or None)` berguna untuk membuat `ProductForm` baru dengan memasukkan QueryDict berdasarkan input _user_ pada `request.POST`.
+- `form.is_valid()` berguna untuk memvalidasi isi input dari _form_.
+- `form.save` berguna untuk membuat dan menyimpan data dari _form_.
+- `return HttpResponseRedirect(reverse('main:show_main'))` berguna untuk melakukan _redirect_ setelah data berhasil disimpan.
+
+3. Selanjutnya saya memodifikasi fungsi `show_main` menjadi,
+
+def show_main(request):
+    cards = Card.objects.all()
+
+    ...
+
+    context = {
+        'my_app': 'Marpellus Cenep',
+        'name': 'FBmo',
+        'class': 'PBP C',
+        'cards': cards,
+        'total_cards': total_cards
+    }
+
+    return render(request, "main.html", context)
+
+> `Card.objects.all()` berfungsi untuk mengambil seluruh _object_ `Card` yang tersimpan di basis data.
+
+4. Saya juga mengimpor fungsi `create_product` ke urls.py di folder `main`.
+
+from main.views import show_main, create_product
+
+5. Setelah itu saya _routing_ fungsi sebelumnya ke dalam `urlspatterns` pada `urls.py` di `main` agar dapat mengakses fungsi yang sudah diimpor sebelumnya.
+
+```
+path('create-product', create_product, name='create_product'),
+```
+
+6. Selanjutnya saya membuat `create_product.html` pada direktori `main/template` dengan kode,
+
+{% extends 'base.html' %} 
+
+{% block content %}
+<h1>Add New Card</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+        <tr>
+            <td></td>
+            <td>
+                <input type="submit" value="Add Card"/>
+            </td>
+        </tr>
+    </table>
+</form>
+
+{% endblock %}
+
+Ada beberapa istilah penting yang perlu diperhatikan, seperti
+- `<form method="POST">` berguna untuk menandakan `block` untuk _form_ dengan metode POST.
+- `{% csrf_token %}` merupakan token sistem keamanan dari Django.
+- `{{ form.as_table }}` berguna untuk menampilkan _fields form_ yang sudah dibuat pada `forms.py` sebagai tabel.
+- `<input type="submit" value="Add` berguna sebagai tombol _submit_ untuk mengirim _request_ ke _view_ `create_product(request)`. 
+
+7. Setelah itu saya memodifikasi kembali `main.html` untuk menambahkan kode berikut di dalam `{% block content %}` untuk menampilkan data produk dalam bentuk tabel.
+
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Amount</th>
+            <th>Price</th>
+            <th>Power</th>
+            <th>Energy Cost</th>
+            <th>Description</th>
+            <th>Date Added</th>
+        </tr>
+
+        {% comment %} Berikut cara memperlihatkan data produk di bawah baris ini {% endcomment %}
+
+        {% for card in cards %}
+            <tr>
+                <td>{{ card.name }}</td>
+                <td>{{ card.amount }}</td>
+                <td>{{ card.price }}</td>
+                <td>{{ card.power }}</td>
+                <td>{{ card.energy_cost }}</td>
+                <td>{{ card.description }}</td>
+                <td>{{ card.date_added }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+
+    <br />
+
+    <a href="{% url 'main:create_product' %}">
+        <button>
+            Add New Card
+        </button>
+    </a>
+
+8. Setelah sudah melihat objek yang ditambahkan melalui **HTML**, saya mencoba agar dapat melihat juga dalam bentuk **XML** dan **JSON** baik dalam menggunakan ID objek maupun tidak dengan menambahkan impor berikut pada `views.py`,
+
+from django.http import HttpResponse
+from django.core import serializers
+
+
+9. Mengambil data dalam bentuk **XML** dan **JSON**
+    Saya membuat fungsi yang menerima parameter _request_ dan membuat variabel dalam fungsi tersebut yang menyimpan hasil _query_ dari seluruh data yang ada pada `Card`
+
+    - XML
+
+        def show_xml(request):
+            data = Card.objects.all()
+            return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+        
+        > `serializers` digunakan untuk menerjemahkan objek model menjadi format tertentu. 
+
+    - JSON
+        def show_json(request):
+            data = Card.objects.all()
+            return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+
+
+    Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
+
+        from main.views import show_main, create_product, show_xml, show_json
+
+
+    dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
+
+        ...
+        path('xml/', show_xml, name='show_xml'), 
+        path('json/', show_json, name='show_json'),
+        ...
+
+10. Mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek
+    Saya membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
+
+    - XML
+        def show_xml_by_id(request, id):
+            data = Card.objects.filter(pk=id)
+            return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+
+
+
+    - JSON
+        def show_json_by_id(request, id):
+            data = Card.objects.filter(pk=id)
+            return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+            
+    Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
+
+        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id 
+
+
+    dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
+
+        ...
+        path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+        path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+        ...
+
+## Perbedaan antara _form_ POST dan GET dalam Django
+### Penggunaan
+POST digunakan untuk menginput data melalui _form_ dan mengirim data-data tersebut, biasanya sifat data yang dikirimkan oleh POST bersifat rahasia dan dapat memengaruhi _state_ pada suatu sistem, seperti pengubahan ataua modifikasi _database_. Sementara itu, GET digunakan untuk input _request_ data yang bersifat umum dan tidak memeiliki efek terhadap _state_ pada suatu sistem, seperti _form_ pencarian suatu situs. 
+
+### Pengiriman Data
+POST mengirimkan data atau nilai langsung ke _action_ untuk ditampung, tanpa menampilkan pada URL. Sementara GET menampilkan data atau nilai pada URL, kemudian akan ditampung oleh _action_.
+
+### Pengambilan Variabel
+`request.POST.get` dapat digunakan untuk mengambil variabel _form_ POST dan `request.GET.get` untuk _form_ GET
+
+## Perbedaan XML, JSON, dan HTML dalam Pengiriman Data
+
+### XML
+Extensible Markup Language (XML) merupakan salah satu representasi data yang digunakan untuk pertukaran data aplikasi. XML menggunakan pola pohon, mirip seperti HTML dalam merepresentasikan data. Dalam pengunaannya, XML memiliki struktur yang lebih kompleks untuk ditulis dan dibaca sehingga menghasilkan _file_ yang memakan banyak ruang.
+
+### JSON
+Sama seperti XML, JavaScript Object Notation (JSON) juga merupakan representasi data dalam pertukaran data, tetapi JSON menggunakan struktur peta dengan pasangan kunci-nilai dalam penyusunannya. Dalam penggunaannya, JSON memiliki ukuran _file_ yang cenderung kecil sehingga transmisi datanya lebih cepat dibandingkan dengan XML.
+
+### HTML
+Jika sebelumnya XML dan JSON digunakan untuk menyimpan serta melakukan transmisi data, HyperText Markup Language (HTML) pada dasarnya digunakan untuk merepresentasikan bagaimana data tersebut ditampilkan pada suatu situs. HTML pada umumnya menjadi sebuah pondasi dari suatu laman di situs _web_ dan hampir tidak ada alternatif yang lebih praktikal lagi.
+
+## Alasan JSON Sering Digunakan dalam Pertukaran Data
+JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan dengan XML. Hal itu membuat _file_ JSON dapat diproses lebih cepat sehingga waktu yang dibutuhkan untuk melakkukan transmisi data lebih sedikit. Selain itu, mayoritas bahasa pemrograman memiliki _library_ atau _built-in_ untuk melakukan _parsing string_ JSON menjadi objek atau kelas di bahasa pemrograman tersebut. Hal tersebut yang membuat JSON dapat dengan mudah diintegrasikan dengan banyak bahasa pemrograman. 
+
+## Hasil Akses URL untuk Melihat Objek Menggunakan Postman
+
+### HTML
+
+### XML
+
+### JSON
+
+### XML by ID
+
+### JSON by ID
