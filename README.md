@@ -258,37 +258,37 @@ _Virtual Environment_ merupakan _tools_ untuk membuat lingkungan Python virtual 
 
 ## Penjelasan MVC, MVT, dan MVVM
 1. MVC
-**Model View Controller** adalah salah satu pola arsitektur dalam pembuatan aplikasi dengan bagian-bagian seperti berikut,
+    **Model View Controller** adalah salah satu pola arsitektur dalam pembuatan aplikasi dengan bagian-bagian seperti berikut,
 
-- `Model`, betugas untuk menyiapkan, mengatur, memanipulasi, dan mengorganisasikan data yang ada di dalam _database_.
+    - `Model`, betugas untuk menyiapkan, mengatur, memanipulasi, dan mengorganisasikan data yang ada di dalam _database_.
 
-- `View`, bertugas untuk merepresentasikan informasi atau data yang telah dikelola oleh model agar dapat dilihat pengguna.
+    - `View`, bertugas untuk merepresentasikan informasi atau data yang telah dikelola oleh model agar dapat dilihat pengguna.
 
-- `Controller`, bertugas untuk menghubungkan serta mengatur `model` dan `view` agar dapat saling terhubung.
+    - `Controller`, bertugas untuk menghubungkan serta mengatur `model` dan `view` agar dapat saling terhubung.
 
-Contoh _framework_ yang menggunakan MVC adalah Spring Boot.
+    Contoh _framework_ yang menggunakan MVC adalah Spring Boot.
 
 2. MVT
-**Model View Template** merupakan pola arsitektur pengembangan aplikasi yang dapat dikatakan mirip dengan MVC, namun memiliki perbedaan di bagian `controller`. Pada MVT, `controller` diganti menjadi `template`. `Template` inilah yang akan menjadi representasi tampilan yang diperlihatkan kepada pengguna yang biasanya menggunakan HTML. 
+    **Model View Template** merupakan pola arsitektur pengembangan aplikasi yang dapat dikatakan mirip dengan MVC, namun memiliki perbedaan di bagian `controller`. Pada MVT, `controller` diganti menjadi `template`. `Template` inilah yang akan menjadi representasi tampilan yang diperlihatkan kepada pengguna yang biasanya menggunakan HTML. 
 
-- `Model`, bertugas untuk mengatur dan mengelola data dari aplikasi.
+    - `Model`, bertugas untuk mengatur dan mengelola data dari aplikasi.
 
-- `View`, bertugas untuk mengontrol bagaimana data yang dikelola oleh `model` akan ditampilkan kepada pengguna.
+    - `View`, bertugas untuk mengontrol bagaimana data yang dikelola oleh `model` akan ditampilkan kepada pengguna.
 
-- `Template`, bertugas mengatur tampilan yang diperlihatkan kepada pengguna.
+    - `Template`, bertugas mengatur tampilan yang diperlihatkan kepada pengguna.
 
-Contoh _framework_ yang menggunakan MVT adalah Django. 
+    Contoh _framework_ yang menggunakan MVT adalah Django. 
 
 3. MVVM
-**Model View ViewModel** merupakan gabungan dari MVC dan MVP.
+    **Model View ViewModel** merupakan gabungan dari MVC dan MVP.
 
-- `Model`, terdiri dari data dasar yang digunakan untuk menjalankan aplikasi.
+    - `Model`, terdiri dari data dasar yang digunakan untuk menjalankan aplikasi.
 
-- `View`, sebagai antarmuka pengguna dan pola desain, mirip seperti yang digunakan oleh MVC.
+    - `View`, sebagai antarmuka pengguna dan pola desain, mirip seperti yang digunakan oleh MVC.
 
-- `ViewModel`, di satu sisi adalah abstraksi dari `View`, lalu sisi yang lain sebagai penyedia pembungkus model data yang akan ditautkan. `ViewModel` terdiri dari `Model` yang diubah menjadi `View` dan berisi perintah yang dapat digunakan oleh `View` untuk memengaruhi `Model`.
+    - `ViewModel`, di satu sisi adalah abstraksi dari `View`, lalu sisi yang lain sebagai penyedia pembungkus model data yang akan ditautkan. `ViewModel` terdiri dari `Model` yang diubah menjadi `View` dan berisi perintah yang dapat digunakan oleh `View` untuk memengaruhi `Model`.
 
-Contoh _framework_ yang menggunakan MVVM adalah WPF.
+    Contoh _framework_ yang menggunakan MVVM adalah WPF.
 
 ## Bonus
 Berikut merupakan implementasi saya dalam melakukan _testing_ dasar lainnya,
