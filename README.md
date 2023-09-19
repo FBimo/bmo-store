@@ -608,7 +608,7 @@ Sama seperti XML, JavaScript Object Notation (JSON) juga merupakan representasi 
 Jika sebelumnya XML dan JSON digunakan untuk menyimpan serta melakukan transmisi data, HyperText Markup Language (HTML) pada dasarnya digunakan untuk merepresentasikan bagaimana data tersebut ditampilkan pada suatu situs. HTML pada umumnya menjadi sebuah pondasi dari suatu laman di situs _web_ dan hampir tidak ada alternatif yang lebih praktikal lagi.
 
 ## Alasan JSON Sering Digunakan dalam Pertukaran Data
-<p align="justify"> JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan dengan XML. Hal itu membuat _file_ JSON dapat diproses lebih cepat sehingga waktu yang dibutuhkan untuk melakkukan transmisi data lebih sedikit. Selain itu, mayoritas bahasa pemrograman memiliki _library_ atau _built-in_ untuk melakukan _parsing string_ JSON menjadi objek atau kelas di bahasa pemrograman tersebut. Hal tersebut yang membuat JSON dapat dengan mudah diintegrasikan dengan banyak bahasa pemrograman. </p>
+JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan dengan XML. Hal itu membuat _file_ JSON dapat diproses lebih cepat sehingga waktu yang dibutuhkan untuk melakkukan transmisi data lebih sedikit. Selain itu, mayoritas bahasa pemrograman memiliki _library_ atau _built-in_ untuk melakukan _parsing string_ JSON menjadi objek atau kelas di bahasa pemrograman tersebut. Hal tersebut yang membuat JSON dapat dengan mudah diintegrasikan dengan banyak bahasa pemrograman.
 
 ## Hasil Akses URL untuk Melihat Objek Menggunakan Postman
 
