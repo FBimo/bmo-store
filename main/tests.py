@@ -1,5 +1,5 @@
 from django.test import TestCase, Client
-from main.models import Item
+from main.models import Card
 
 # Create your tests here.
 class mainTest(TestCase):
@@ -13,11 +13,11 @@ class mainTest(TestCase):
 
     #another test
     def setUp(self):
-        Item.objects.create(name="sunspot", amount=1, price=5000, description='Gain atk power with unspent energy', atk_power=50)
-        Item.objects.create(name="hawkeye", amount=1, price=5000, description='Gain 3 atk power if you play card here next turn', atk_power=45)
+        Card.objects.create(name="Gundala", amount=35, price=15000, power=3, energy_cost=4, description='Summon lightning to gain +3 power and destroy all card nearby')
+        Card.objects.create(name="Godam", amount=35, price=16000, power=5, energy_cost=3, description='Invincible (cannot be destroyed, weakened, etc) until round 6')
     
     def test_get_desc(self):
-        sunspot = Item.objects.get(name="sunspot")
-        hawkeye = Item.objects.get(name="hawkeye")
-        self.assertEqual(sunspot.get_desc(), "Gain atk power with unspent energy")
-        self.assertEqual(hawkeye.get_desc(), "Gain 3 atk power if you play card here next turn")
+        gundala = Card.objects.get(name="Gundala")
+        godam = Card.objects.get(name="Godam")
+        self.assertEqual(gundala.get_desc(), "Summon lightning to gain +3 power and destroy all card nearby")
+        self.assertEqual(godam.get_desc(), "Invincible (cannot be destroyed, weakened, etc) until round 6")
