@@ -358,6 +358,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
 3. Agar `base.html` terdeteksi sebagai _template_, saya perlu membuka `settings.py` pada subdirektori `marpellus_cenep` dan sedikit memodifikasi bagian `TEMPLATES` menjadi seperti ini,
 
+    ```
     ...
     TEMPLATES = [
         {
@@ -368,6 +369,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
         }
     ]
     ...
+    ```
 
 4. Setelah itu, saya perlu mengunjungi subdirektori `templates` yang ada di di direktori `main` untuk mengubah sedikit `main.html`,
 
@@ -390,6 +392,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
 5. Selanjutnya saya dapat langsung membuat `forms.py` pada direktori `main` sebagai struktur _form_ yang dapat menerima data produk baru dengan kode,
 
+    ```
     from django.forms import ModelForm
     from main.models import Card
 
@@ -397,22 +400,26 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
         class Meta:
             model = Card
             fields = ["name", "amount", "price", "power", "energy_cost", "description"]
+    ```
 
     Ada beberapa istilah penting yang perlu diperhatikan, seperti
     - `model = Card` berfungsi untuk menunjukkan model yang digunakan di _form_.
     - `fields = ["name", "amount", "price", "power", "energy_cost", "description"]` merupakan atribut-atribut yang dimiliki oleh model `Card`. 
 
-### Modifikasi 'views' dan _routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
+### Modifikasi 'views' dan _Routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
 
 1. Pada _file_ `views.py` di foler `main`, perlu ditambahkan kode berikut,
 
+    ```
     from django.http import HttpResponseRedirect
     from main.forms import ProductForm
     from main.models import Card
     from django.urls import reverse
+    ```
 
 2. Setelah itu saya membuat fungsi baru dengan nama `create_product` yang menerima parameter `request` untuk menghasilkan formulir yang dapat menambahkan data produk secara otomatis ketikad ata sudah di-_submit_ melalui _form_.
 
+    ```
     def create_product(request):
         form = ProductForm(request.POST or None)
 
@@ -422,6 +429,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
         context = {'form': form}
         return render(request, "create_product.html", context)
+    ```
 
     Ada beberapa istilah penting yang perlu diperhatikan, seperti
     - `form = ProductForm(request.POST or None)` berguna untuk membuat `ProductForm` baru dengan memasukkan QueryDict berdasarkan input _user_ pada `request.POST`.
@@ -431,6 +439,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
 3. Selanjutnya saya memodifikasi fungsi `show_main` menjadi,
 
+    ```
     def show_main(request):
         cards = Card.objects.all()
 
@@ -445,12 +454,15 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
         }
 
         return render(request, "main.html", context)
+    ```
 
     > `Card.objects.all()` berfungsi untuk mengambil seluruh _object_ `Card` yang tersimpan di basis data.
 
-4. Saya juga mengimpor fungsi `create_product` ke urls.py di folder `main`.
+4. Saya juga mengimpor fungsi `create_product` ke `urls.py` di folder `main`.
 
+    ```
     from main.views import show_main, create_product
+    ```
 
 5. Setelah itu saya melakukan _routing_ fungsi sebelumnya ke dalam `urlspatterns` pada `urls.py` di `main` agar dapat mengakses fungsi yang sudah diimpor sebelumnya.
 
@@ -537,18 +549,21 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
     Saya membuat fungsi yang menerima parameter _request_ dan membuat variabel dalam fungsi tersebut yang menyimpan hasil _query_ dari seluruh data yang ada pada `Card`.
 
     #### XML
+    ```
     def show_xml(request):
         data = Card.objects.all()
         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    ```
     
     > `serializers` digunakan untuk menerjemahkan objek model menjadi format tertentu. 
 
     #### JSON
+
+    ```
     def show_json(request):
         data = Card.objects.all()
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
-
-
+    ```    
     Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
 
         from main.views import show_main, create_product, show_xml, show_json
@@ -561,25 +576,29 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
         path('json/', show_json, name='show_json'),
         ...
 
-10. Mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek
-    Saya membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
+10. Mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek dengan membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
 
     #### XML
+    ```
     def show_xml_by_id(request, id):
         data = Card.objects.filter(pk=id)
         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
+    ```
 
     #### JSON
+    ```
     def show_json_by_id(request, id):
         data = Card.objects.filter(pk=id)
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
+    ```
             
     Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
 
-        ```from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id ```
+        ```
+        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id
+        ```
 
-
-    dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
+    dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yang udah diimpor tadi,
 
         ...
         path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
@@ -622,3 +641,5 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ![SS_xml_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/939088de-0c10-4dab-a16a-5447e001402c)
 ### JSON by ID
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
+
+## Bonus
