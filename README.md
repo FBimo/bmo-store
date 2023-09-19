@@ -613,11 +613,12 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ## Hasil Akses URL untuk Melihat Objek Menggunakan Postman
 
 ### HTML
-
+![SS_html](https://github.com/FBimo/marpellus-cenep/assets/119420957/dcd2894f-b3bd-451f-a4ed-40924c5ebdd9)
 ### XML
-
+![SS_xml](https://github.com/FBimo/marpellus-cenep/assets/119420957/c6adb15b-c9f2-40ec-8cd3-93095521b906)
 ### JSON
-
+![SS_json](https://github.com/FBimo/marpellus-cenep/assets/119420957/3d8bc82d-76e8-441c-832b-ecc5f8b5995c)
 ### XML by ID
-
+![SS_xml_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/939088de-0c10-4dab-a16a-5447e001402c)
 ### JSON by ID
+![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
