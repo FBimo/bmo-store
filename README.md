@@ -575,7 +575,6 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
 
-        
         urlpatterns = [
             ...
             path('xml/', show_xml, name='show_xml'), 
@@ -601,9 +600,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
             
     Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
 
-        ```
-        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id
-        ```
+        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id        
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yang udah diimpor tadi,
 
@@ -671,5 +668,6 @@ Berikut merupakan tangkapan layar implementasi fungsi dan aplikasi yang terdapat
     
         return render(request, "main.html", context)
 
-![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/2cb67804-f900-44e4-a33a-83f23466718b)
+
+![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/dcdf14d2-0ecf-472e-a10d-7cfeaa52f20b)
 
