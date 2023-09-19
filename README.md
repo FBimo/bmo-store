@@ -122,43 +122,43 @@
 
 3. Sebelum menjalankan _routing_ agar aplikasi dapat berjalan, saya melakukan beberapa implementasi dasar terhadap struktur awal aplikasi, seperti
 
-- Mendaftarkan aplikasi **main** ke dalam proyek dengan menambahkan '**main**' ke dalam daftar aplikasi yang ada di bagian `INSTALLED_APPS` pada `settings.py` seperti kode di bawah ini,
+    - Mendaftarkan aplikasi **main** ke dalam proyek dengan menambahkan '**main**' ke dalam daftar aplikasi yang ada di bagian `INSTALLED_APPS` pada `settings.py` seperti kode di bawah ini,
 
-    ```
-    INSTALLED_APPS = [
-        ...,
-        'main',
-        ...
-    ]
-    ```
-    
-- Membuat dan mengisi _file_ `main.html` untuk membuat struktur dan tampilan dasar pada halaman _web_.
+        ```
+        INSTALLED_APPS = [
+            ...,
+            'main',
+            ...
+        ]
+        ```
+        
+    - Membuat dan mengisi _file_ `main.html` untuk membuat struktur dan tampilan dasar pada halaman _web_.
 
-- Menambah isi dari `models.py` di dalam direktori aplikasi `main` untuk mendefinisikan model baru. Di dalam model inilah kita dapat mengelola data dari aplikasi.
+    - Menambah isi dari `models.py` di dalam direktori aplikasi `main` untuk mendefinisikan model baru. Di dalam model inilah kita dapat mengelola data dari aplikasi.
 
-- Membuat migrasi model agar Django dapat melacak pembaruan yang terjadi di `models.py` dengan perintah,
+    - Membuat migrasi model agar Django dapat melacak pembaruan yang terjadi di `models.py` dengan perintah,
 
-    ```
-    python manage.py makemigrations
-    ```
-    
-    > Perintah di atas berguna untuk menciptakan berkas migrasi berupa perubahan model. 
-    
-    Setelah itu perlu menjalankan perintah,
+        ```
+        python manage.py makemigrations
+        ```
+        
+        > Perintah di atas berguna untuk menciptakan berkas migrasi berupa perubahan model. 
+        
+        Setelah itu perlu menjalankan perintah,
 
-    ```
-    python manage.py migrate
-    ```
-    
-    > Perintah di atas berguna untuk mengaplikasikan perubahan yang terjadi pada model ke basis data.
+        ```
+        python manage.py migrate
+        ```
+        
+        > Perintah di atas berguna untuk mengaplikasikan perubahan yang terjadi pada model ke basis data.
 
-- Mengintegrasikan komponen `views.py` yang dapat menangani bagaimana data yang dikelola model ditampilkan kepada pengguna dengan menambahkan kode awal sebagai berikut,
+    - Mengintegrasikan komponen `views.py` yang dapat menangani bagaimana data yang dikelola model ditampilkan kepada pengguna dengan menambahkan kode awal sebagai berikut,
 
-    ```
-    from django.shortcuts import render
-    ```
-    
-    > Kode di atas berguna untuk mengimpor fungsi `render` yang berfungsi untuk melakukan _render_ tampilan HTML dengan menggunakan data yang diberikan.
+        ```
+        from django.shortcuts import render
+        ```
+        
+        > Kode di atas berguna untuk mengimpor fungsi `render` yang berfungsi untuk melakukan _render_ tampilan HTML dengan menggunakan data yang diberikan.
     
 ### Melakukan _Routing_ pada Proyek
 
