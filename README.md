@@ -408,7 +408,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
 ### Modifikasi 'views' dan _Routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
 
-1. Pada _file_ `views.py` di foler `main`, perlu ditambahkan kode berikut,
+1. Pada _file_ `views.py` di folder `main`, perlu ditambahkan kode berikut,
 
     ```
     from django.http import HttpResponseRedirect
@@ -417,7 +417,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
     from django.urls import reverse
     ```
 
-2. Setelah itu saya membuat fungsi baru dengan nama `create_product` yang menerima parameter `request` untuk menghasilkan formulir yang dapat menambahkan data produk secara otomatis ketikad ata sudah di-_submit_ melalui _form_.
+2. Setelah itu saya membuat fungsi baru dengan nama `create_product` yang menerima parameter `request` untuk menghasilkan formulir yang dapat menambahkan data produk secara otomatis ketika data sudah di-_submit_ melalui _form_.
 
     ```
     def create_product(request):
@@ -467,7 +467,12 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 5. Setelah itu saya melakukan _routing_ fungsi sebelumnya ke dalam `urlspatterns` pada `urls.py` di `main` agar dapat mengakses fungsi yang sudah diimpor sebelumnya.
 
     ```
+    urlpatterns = [
+    ...
     path('create-product', create_product, name='create_product'),
+    ...
+    ]
+    
     ```
 
 6. Selanjutnya saya membuat `create_product.html` pada direktori `main/template` dengan kode,
@@ -545,17 +550,14 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
     from django.core import serializers
     ```
 
-9. Mengambil data dalam bentuk **XML** dan **JSON**
-    Saya membuat fungsi yang menerima parameter _request_ dan membuat variabel dalam fungsi tersebut yang menyimpan hasil _query_ dari seluruh data yang ada pada `Card`.
+9. Ketika ingin mengambil data dalam bentuk **XML** dan **JSON**, saya membuat fungsi yang menerima parameter _request_ dan membuat variabel dalam fungsi tersebut yang menyimpan hasil _query_ dari seluruh data yang ada pada `Card`.
 
     #### XML
     ```
     def show_xml(request):
         data = Card.objects.all()
         return HttpResponse(serializers.serialize("xml", data), content_type="application/xml")
-    ```
-    
-    > `serializers` digunakan untuk menerjemahkan objek model menjadi format tertentu. 
+    ``` 
 
     #### JSON
 
@@ -564,6 +566,8 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
         data = Card.objects.all()
         return HttpResponse(serializers.serialize("json", data), content_type="application/json")
     ```    
+    > `serializers` digunakan untuk menerjemahkan objek model menjadi format tertentu.
+
     Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
 
         from main.views import show_main, create_product, show_xml, show_json
@@ -571,12 +575,16 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
 
-        ...
-        path('xml/', show_xml, name='show_xml'), 
-        path('json/', show_json, name='show_json'),
-        ...
+        ```
+        urlpatterns = [
+            ...
+            path('xml/', show_xml, name='show_xml'), 
+            path('json/', show_json, name='show_json'),
+            ...
+        ]
+        ```
 
-10. Mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek dengan membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
+10. Selanjutnya saya ingin mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek dengan membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
 
     #### XML
     ```
@@ -600,20 +608,22 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yang udah diimpor tadi,
 
-        ...
-        path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
-        path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
-        ...
+        urlpatterns = [
+            ...
+            path('xml/<int:id>/', show_xml_by_id, name='show_xml_by_id'),
+            path('json/<int:id>/', show_json_by_id, name='show_json_by_id'),
+            ...
+        ]
 
 ## Perbedaan antara _form_ POST dan GET dalam Django
 ### Penggunaan
-POST digunakan untuk menginput data melalui _form_ dan mengirim data-data tersebut, biasanya sifat data yang dikirimkan oleh POST bersifat rahasia dan dapat memengaruhi _state_ pada suatu sistem, seperti pengubahan ataua modifikasi _database_. Sementara itu, GET digunakan untuk input _request_ data yang bersifat umum dan tidak memeiliki efek terhadap _state_ pada suatu sistem, seperti _form_ pencarian suatu situs. 
+POST digunakan untuk menginput data melalui _form_ dan mengirim data-data tersebut, biasanya sifat data yang dikirimkan oleh POST bersifat rahasia dan dapat memengaruhi _state_ pada suatu sistem, seperti pengubahan atau modifikasi _database_. Sementara itu, GET digunakan untuk input _request_ data yang bersifat umum dan tidak memiliki efek terhadap _state_ pada suatu sistem, seperti _form_ pencarian suatu situs. 
 
 ### Pengiriman Data
 POST mengirimkan data atau nilai langsung ke _action_ untuk ditampung, tanpa menampilkan pada URL. Sementara GET menampilkan data atau nilai pada URL, kemudian akan ditampung oleh _action_.
 
 ### Pengambilan Variabel
-`request.POST.get` dapat digunakan untuk mengambil variabel _form_ POST dan `request.GET.get` untuk _form_ GET
+`request.POST.get` dapat digunakan untuk mengambil variabel _form_ POST dan `request.GET.get` untuk _form_ GET.
 
 ## Perbedaan XML, JSON, dan HTML dalam Pengiriman Data
 
@@ -643,5 +653,3 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
 
 ## Bonus
-![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/363150a9-2066-4a9d-a1db-6cc324963d50)
-
