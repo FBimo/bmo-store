@@ -575,14 +575,13 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
 
-        ```
+        
         urlpatterns = [
             ...
             path('xml/', show_xml, name='show_xml'), 
             path('json/', show_json, name='show_json'),
             ...
         ]
-        ```
 
 10. Selanjutnya saya ingin mengambil data dalam bentuk **XML** dan **JSON** dengan ID objek dengan membuat fungsi yang menerima parameter _request_ dan id dengan nama `show_xml_by_id` dan `show_json_by_id`.
 
@@ -653,3 +652,4 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
 
 ## Bonus
+Berikut merupakan tangkapan layar aplikasi yang terdapat petunjuk mengenai berapa banyak `Card` yang sudah ditambahkan ke dalam aplikasi. 
