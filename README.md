@@ -643,3 +643,5 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
 
 ## Bonus
+![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/363150a9-2066-4a9d-a1db-6cc324963d50)
+
