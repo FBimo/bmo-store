@@ -585,7 +585,6 @@ Tugas 3
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yangs udah diimpor tadi,
 
-        
         urlpatterns = [
             ...
             path('xml/', show_xml, name='show_xml'), 
@@ -611,9 +610,7 @@ Tugas 3
             
     Setelah itu saya mengimpor fungsi yang baru saja dibuat dengan kode berikut pada `urls.py` di folder `main`,
 
-        ```
-        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id
-        ```
+        from main.views import show_main, create_product, show_xml, show_json, show_xml_by_id, show_json_by_id        
 
     dan menambahkan _path_ URL ke dalam `urlpatterns` untuk mengakses fungsi yang udah diimpor tadi,
 
@@ -1194,3 +1191,4 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
    ![bonus-rm-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/7437b45d-0316-435e-a85b-d5dd49cece50)
    ![bonus-rm-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/cb3ea7b8-c492-4b53-9754-af8a80e936c6)
 </details>
+      
