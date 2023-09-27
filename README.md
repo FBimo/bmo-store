@@ -926,8 +926,10 @@ def show_main(request):
 ### Membuat Dua Akun dengan Setiap Akun Memiliki Tiga _Dummy Data_
 
 Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki tiga _dummy data_,
-
-[insert_picture]
+#### Akun Pertama
+![ss-main-privAcc1](https://github.com/FBimo/marpellus-cenep/assets/119420957/3f531768-5c77-4f35-b53d-3d1bd8f41817)
+#### Akun Kedua
+![ss-main-privAcc2](https://github.com/FBimo/marpellus-cenep/assets/119420957/9a641100-f25b-4df6-b4f0-8e2a76bbd3f2)
 
 ### Menghubungkan Model Item dengan User
 > Perlu diketahui bahwa _term_ `Item` pada aplikasi saya adalah `Card`
@@ -1053,8 +1055,8 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
     ```
 
 6. Setelah itu, saya dapat melakukan `python manage.py runserver` dan melakukan _login_ untuk melihat data _cookie_ yang tersimpan dengan fitur _inspect element_.
-
-[insert_picture]
+   
+   ![ss-main-cookies](https://github.com/FBimo/marpellus-cenep/assets/119420957/b51f006a-cc92-4ef5-8b5e-7fc5104bc46d)
 
 ## Django `UserCreationForm`
 `UserCreationForm` merupakan suatu modul bawaan Django yang menyajikan sarana bagi penggunanya untuk melakukan sistem autentikasi. Sesuai dengan namanya, `UserCreationForm` dapat membuat _user_ baru yang dapat mengakses aplikasi _web_. `UserCreationForm` biasanya terdiri dari tiga _field_, yaitu `username`, `password1`, dan `password2`. _Field_ tersebut biasanya digunakan untuk melakukan konfirmasi _password_.
@@ -1158,5 +1160,21 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
             </td>
     ```
 
-4. Berikut merupakan cuplikan halaman utama
-[insert_picture]
+4. Berikut merupakan cuplikan proses implementasi
+
+   #### Proses _Increament_
+   
+   ![bonus-inc-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/1fa314cf-bc59-4817-a6a7-9e1ef6385f08)
+   ![bonus-inc-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/fbb84ad0-f04e-4bfc-a613-0496fb3af313)
+
+   #### Proses _Decreament_
+
+   ![bonus-dec-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/921b3806-5665-4b22-9ae2-38c229c84c51)
+   ![bonus-dec-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/1bb8f701-88c4-41f6-9a71-a0fd1bb5e250)
+
+   #### Proses _Remove_
+   ![bonus-rm-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/7437b45d-0316-435e-a85b-d5dd49cece50)
+   ![bonus-rm-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/cb3ea7b8-c492-4b53-9754-af8a80e936c6)
+
+
+   
