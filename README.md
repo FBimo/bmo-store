@@ -1,7 +1,11 @@
+<details>
+<summary> 
+Tugas 2
+</summary>
+<br>
+
 # Tugas 2 PBP 2023
-
 ## Implementasi Checklist
-
 ### Membuat Proyek Django
 
 1. Saya membuat sebuah folder khusus di komputer sebagai tempat proyek Django akan disimpan.
@@ -322,6 +326,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
 
     OK
     Destroying test database for alias 'default'...
+</details>
 
 # Tugas 3 PBP 2023
 
