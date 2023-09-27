@@ -15,7 +15,16 @@ class Card(models.Model):
     def __str__(self):
         return self.name
 
+
     def get_desc(self):
        return self.description
+    
+
+    def set_amount(self, param):
+        if param == "inc":
+            self.amount += 1
+        else:
+            self.amount -= 1
+
 
     

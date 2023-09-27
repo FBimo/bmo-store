@@ -105,4 +105,27 @@ def logout_user(request):
     return response
 
 
-#def increase_card(request):
+def increase_card(request, id):
+    card = Card.objects.filter(user=request.user, pk=id).first()
+    if card.amount > 0:
+        card.amount += 1
+    card.save()
+
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+
+def decrease_card(request, id):
+    card = Card.objects.filter(user=request.user, pk=id).first()
+    if card.amount > 0:
+        card.amount -= 1
+    card.save()
+
+    return HttpResponseRedirect(reverse('main:show_main'))
+
+
+def remove_card(request, id):
+    card = Card.objects.filter(user=request.user, pk=id).first()
+    if card.amount > 0:
+        card.delete()
+    
+    return HttpResponseRedirect(reverse('main:show_main'))

@@ -8,7 +8,7 @@
     <h5>Class: </h5>
     <p>{{ class }}<p>
 
-        <P>Kamu menyimpan {{total_cards}} kartu pada aplikasi ini</P>
+        <P>Kamu menyimpan {{total_cards}} jenis kartu pada akun ini</P>
 
         <table>
             <tr>
@@ -26,12 +26,33 @@
             {% for card in cards %}
                 <tr>
                     <td>{{ card.name }}</td>
-                    <td>{{ card.amount }}</td>
+                    <td>
+                        <a href="{% url 'main:increase_card' card.id %}">
+                            <button >
+                                +
+                            </button>
+                        </a>
+                        
+                        {{ card.amount }}
+
+                        <a href="{% url 'main:decrease_card' card.id %}">
+                            <button >
+                                -
+                            </button>
+                        </a>
+                    </td>
                     <td>{{ card.price }}</td>
                     <td>{{ card.power }}</td>
                     <td>{{ card.energy_cost }}</td>
                     <td>{{ card.description }}</td>
                     <td>{{ card.date_added }}</td>
+                    <td>
+                        <a href="{% url 'main:remove_card' card.id %}">
+                            <button>
+                                remove card
+                            </button>
+                        </a>
+                    </td>
                 </tr>
             {% endfor %}
         </table>
