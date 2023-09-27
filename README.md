@@ -5,7 +5,7 @@ Tugas 2
 <br>
 
 # Tugas 2 PBP 2023
-## Implementasi Checklist
+## A. Implementasi Checklist
 ### Membuat Proyek Django
 
 1. Saya membuat sebuah folder khusus di komputer sebagai tempat proyek Django akan disimpan.
@@ -112,7 +112,7 @@ Tugas 2
     django-admin startproject <nama_proyek> .
     ```
 
-### Membuat Aplikasi dengan Nama 'main'
+### Membuat Aplikasi dengan Nama `main`
 
 1. Pertama, saya memastikan bahwa direktori pengerjaan di direktori proyek dan _virtual environtment_ telah diaktifkan.
 
@@ -178,7 +178,7 @@ Untuk mengatur _routing_ tingkat proyek, saya perlu membuka `urls.py` di dalam d
 
 > Perlu diperhatikan bahwa fungsi `include` di atas berguna untuk mengimpor rute URL dari aplikasi lain ke dalam `urls.py` proyek dan _path_ `'main/'` nantinya akan diarahkan ke rute yang didefinisiakn dalam `urls.py` aplikasi `main`.
     
-### Membuat Model pada Aplikasi 'main'
+### Membuat Model pada Aplikasi `main`
 Berikut model yang saya tambahkan ke dalam `models.py`,
 
         from django.db import models
@@ -194,7 +194,7 @@ Ada beberapa istilah penting yang perlu diperhatikan, seperti
 - `models.Model` merupakan kelas dasar yang digunakan untuk mendefinisikan model dalam Django.
 - `name`, `amount`, `date_added`, `price`, dan `description` adalah atribut pada model dan setiap _field_ memiliki tipe data, seperti `Charfield`, `IntegerField`, `DateField`, dan `TextField`.
 
-### Membuat Fungsi pada views.py
+### Membuat Fungsi pada `views.py`
 
 Berikut fungsi pada `views.py` untuk mengembalikan **nama aplikasi**, **nama**, dan **kelas** saya,
 
@@ -214,7 +214,7 @@ Ada beberapa istilah penting yang perlu diperhatikan, seperti
 - `context` adalah _dictionary_ data yang akan dikirimkan ke tampilan.
 - `return render(request, "main.html", context)` berguna untuk melakukan render tampilan `main.html`.
 
-### Membuat _Routing_ pada urls.py Aplikasi main
+### Membuat _Routing_ pada `urls.py` Aplikasi `main`
 
 Setelah membuat fungsi pada `views.py`, saya perlu membuat _routing_ pada `urls.py` aplikasi main untuk memetakan fungsi yang telah dibuat dengan kode sebagai berikut,
 
@@ -249,7 +249,7 @@ Ada beberapa istilah penting yang perlu diperhatikan, seperti
 Tautan aplikasi: [Marpellus Cenep](https://marpellus-cenep.adaptable.app)
     
 
-## Bagan _Request Client_
+## B. Bagan _Request Client_
 ![django-request-flow](https://github.com/FBimo/marpellus-cenep/assets/119420957/9b1d3f76-0013-4b6f-a539-8974df6099a5)
 
 - `urls.py`, sebagai tempat perkumpulan URL. Django akan mencari melewati _file_ ini untuk menemukan URL yang paling cocok sesuai dengan permintaan.
@@ -257,10 +257,10 @@ Tautan aplikasi: [Marpellus Cenep](https://marpellus-cenep.adaptable.app)
 - `models.py`, sebagai pengolah data dan penghubung antara _database_ dengan `views.py`. `models.py` dapat melakukan manipulasi struktur data aplikasi sesuai kebutuhan pengguna.
 - `template`, struktur tampilan antarmuka pengguna yang akan membantu `views.py` dalam melakukan proses _render_ HTML.
 
-## Alasan Penggunaan _Virtual Environment_
-_Virtual Environment_ merupakan _tools_ untuk membuat lingkungan Python virtual yang terisolasi. Terisolasi di sini maksudnya versi-versi dependensi atau _packages_ yang ada di dalam lingkungan virtual tidak akan berpengaruh dengan versi dependensi yang ada di komputer lokal. Penggunaan virtual env cukup umum ketika ingin membuat proyek Django karena dengan adanya lingkungan isolasi, Python yang digunakan untuk menjalankan proyek Django tidak akan terganggu dengan pembaruan yang terjadi di komputer lokal (jika ada pembaruan) sehingga proyek dapat tetap berjalan walaupun adanya perubahan versi modul Python di komputer lokal. Sebuah proyek Django sebenarnya dapat tetap dijalankan jika tidak menggunakan virtual env, namun ada kemungkinan proyek akan mengalami gangguan karena adanya perubahan modul akibat perubahan versi modul di komputer lokal. Oleh karena itu, virtual env sangat disarankan apabila kita ingin membuat suatu proyek berbasis Django. 
+## C. Alasan Penggunaan _Virtual Environment_
+_Virtual Environment_ merupakan _tools_ untuk membuat lingkungan Python virtual yang terisolasi. Terisolasi di sini maksudnya versi-versi dependensi atau _packages_ yang ada di dalam lingkungan virtual tidak akan berpengaruh dengan versi dependensi yang ada di komputer lokal. Penggunaan virtual env cukup umum ketika ingin membuat proyek Django karena dengan adanya lingkungan isolasi, Python yang digunakan untuk menjalankan proyek Django tidak akan terganggu dengan pembaruan yang terjadi di komputer lokal (jika ada pembaruan) sehingga proyek dapat tetap berjalan walaupun adanya perubahan versi modul Python di komputer lokal. Sebuah proyek Django sebenarnya dapat tetap dijalankan jika tidak menggunakan virtual env, namun ada kemungkinan proyek akan mengalami gangguan karena adanya perubahan modul akibat perubahan versi modul di komputer lokal. Oleh karena itu, **virtual env sangat disarankan** apabila kita ingin membuat suatu proyek berbasis Django. 
 
-## Penjelasan MVC, MVT, dan MVVM
+## D. Penjelasan MVC, MVT, dan MVVM
 ### MVC
 **Model View Controller** adalah salah satu pola arsitektur dalam pembuatan aplikasi dengan bagian-bagian seperti berikut,
 
@@ -294,7 +294,7 @@ Contoh _framework_ yang menggunakan MVT adalah Django.
 
 Contoh _framework_ yang menggunakan MVVM adalah WPF.
 
-## Bonus
+## E. Bonus
 Berikut merupakan implementasi saya dalam melakukan _testing_ dasar lainnya,
 
     
@@ -328,11 +328,16 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
     Destroying test database for alias 'default'...
 </details>
 
+<details>
+<summary> 
+Tugas 3
+</summary>
+<br>
+
 # Tugas 3 PBP 2023
-
-## Implementasi Checklist
-
+## A. Implementasi Checklist
 ### Membuat Form Input Data
+
 1. Sebelum saya membuat sebuah _form_ untuk menginput data baru ke dalam aplikasi, saya perlu membuat kerangka views sebagai _template_ dari sebuah laman di situs agar dapat mengurangi menulis kode secara berulang.
 
 2. Berikut merupakan kode `base.html` yang diletakkan pada folder `templates` di _root folder_,
@@ -619,7 +624,7 @@ _Testing_ ini berguna untuk mengetahui bahwa program dapat membuat sebuah objek 
             ...
         ]
 
-## Perbedaan antara _form_ POST dan GET dalam Django
+## B. Perbedaan antara _form_ POST dan GET dalam Django
 ### Penggunaan
 POST digunakan untuk menginput data melalui _form_ dan mengirim data-data tersebut, biasanya sifat data yang dikirimkan oleh POST bersifat rahasia dan dapat memengaruhi _state_ pada suatu sistem, seperti pengubahan atau modifikasi _database_. Sementara itu, GET digunakan untuk input _request_ data yang bersifat umum dan tidak memiliki efek terhadap _state_ pada suatu sistem, seperti _form_ pencarian suatu situs. 
 
@@ -629,7 +634,7 @@ POST mengirimkan data atau nilai langsung ke _action_ untuk ditampung, tanpa men
 ### Pengambilan Variabel
 `request.POST.get` dapat digunakan untuk mengambil variabel _form_ POST dan `request.GET.get` untuk _form_ GET.
 
-## Perbedaan XML, JSON, dan HTML dalam Pengiriman Data
+## C. Perbedaan XML, JSON, dan HTML dalam Pengiriman Data
 
 ### XML
 Extensible Markup Language (XML) merupakan salah satu representasi data yang digunakan untuk pertukaran data aplikasi. XML menggunakan pola pohon, mirip seperti HTML dalam merepresentasikan data. Dalam pengunaannya, XML memiliki struktur yang lebih kompleks untuk ditulis dan dibaca sehingga menghasilkan _file_ yang memakan banyak ruang.
@@ -640,10 +645,10 @@ Sama seperti XML, JavaScript Object Notation (JSON) juga merupakan representasi 
 ### HTML
 Jika sebelumnya XML dan JSON digunakan untuk menyimpan serta melakukan transmisi data, HyperText Markup Language (HTML) pada dasarnya digunakan untuk merepresentasikan bagaimana data tersebut ditampilkan pada suatu situs. HTML pada umumnya menjadi sebuah pondasi dari suatu laman di situs _web_ dan hampir tidak ada alternatif yang lebih praktikal lagi.
 
-## Alasan JSON Sering Digunakan dalam Pertukaran Data
+## D. Alasan JSON Sering Digunakan dalam Pertukaran Data
 JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan dengan XML. Hal itu membuat _file_ JSON dapat diproses lebih cepat sehingga waktu yang dibutuhkan untuk melakkukan transmisi data lebih sedikit. Selain itu, mayoritas bahasa pemrograman memiliki _library_ atau _built-in_ untuk melakukan _parsing string_ JSON menjadi objek atau kelas di bahasa pemrograman tersebut. Hal tersebut yang membuat JSON dapat dengan mudah diintegrasikan dengan banyak bahasa pemrograman.
 
-## Hasil Akses URL untuk Melihat Objek Menggunakan Postman
+## E. Hasil Akses URL untuk Melihat Objek Menggunakan Postman
 
 ### HTML
 ![SS_html](https://github.com/FBimo/marpellus-cenep/assets/119420957/dcd2894f-b3bd-451f-a4ed-40924c5ebdd9)
@@ -656,7 +661,7 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ### JSON by ID
 ![SS_json_by_id](https://github.com/FBimo/marpellus-cenep/assets/119420957/8a12e102-b059-47d7-b8c4-7835973842c9)
 
-## Bonus
+## F. Bonus
 Berikut merupakan tangkapan layar aplikasi yang terdapat petunjuk mengenai berapa banyak `Card` yang sudah ditambahkan ke dalam aplikasi.
 
 def show_main(request):
@@ -677,12 +682,18 @@ def show_main(request):
     return render(request, "main.html", context)
 
 ![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/dcdf14d2-0ecf-472e-a10d-7cfeaa52f20b)
+</details>
+
+<details>
+<summary> 
+Tugas 4
+</summary>
+<br>
 
 # Tugas 4 PBP 2023
-
-## Implementasi Checklist
-
+## A. Implementasi Checklist
 ### Mengimplementasikan Fungsi Registrasi
+
 1. Saya membuat fungsi dengan nama `register` yang menerima parameter `request` di `views.py` pada subdirektori `main`.
 
 2. Setelah itu, saya perlu mengimpor beberapa hal sebagai berikut,
@@ -1063,7 +1074,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
    
    ![ss-main-cookies](https://github.com/FBimo/marpellus-cenep/assets/119420957/b51f006a-cc92-4ef5-8b5e-7fc5104bc46d)
 
-## Django `UserCreationForm`
+## B. Django `UserCreationForm`
 `UserCreationForm` merupakan suatu modul bawaan Django yang menyajikan sarana bagi penggunanya untuk melakukan sistem autentikasi. Sesuai dengan namanya, `UserCreationForm` dapat membuat _user_ baru yang dapat mengakses aplikasi _web_. `UserCreationForm` biasanya terdiri dari tiga _field_, yaitu `username`, `password1`, dan `password2`. _Field_ tersebut biasanya digunakan untuk melakukan konfirmasi _password_.
 
 ### Kelebihan `UserCreationForm`
@@ -1072,7 +1083,7 @@ Kelebihan dari `UserCreationForm` adalah memiliki sistem validasi. Penerapan val
 ### Kekurangan `UserCreationForm`
 Kekurangan dari `UserCreationForm` adalah restriksi peraturan yang dimiliki oleh Django itu sendiri. Django mengharuskan kita untuk mengimpor modul secara keseluruhan dalam satu waktu karena _form_ yang kita buat itu merupakan _file_ .py yang terpisah. Dengan adanya restriksi dari Django, kita juga tidak bisa secara bebas memodifikasi bentuk dari _form_ yang diinginkan. 
 
-## Perbedaan Autentikasi dan Otorisasi
+## C. Perbedaan Autentikasi dan Otorisasi
 
 ### Autentikasi
 Proses identifikasi awal ketika ingin melakukan akses ke sebuah sistem. Biasanya hal ini dapat kita sebut sebagai _login_ ke suatu sistem tertentu. Proses _login_ memeriksa apakah orang yang ingin mengakses sistem tersebut benar-benar adalah orang yang tepat. Misalnya jika ingin melakukan _login_ ketika ingin mengirim _email_ di perangkat yang belum memiliki akun orang yang ingin mengirim tersebut. Sistem akan memberikan suatu langkah-langkah untuk memverifikasi orang tersebut yang ingin mengakses akun miliknya sendiri, seperti memasukkan nama pengguna dan kata sandi. Hal ini mencegah sistem agar tetap aman dari ancaman intrusi oleh entitas asing.
@@ -1082,13 +1093,13 @@ Proses lanjutan dari autentikasi yang menitikberatkan terhadap otorisasi yang di
 
 > Kedua hal tersebut merupakan aspek yang cukup krusial untuk tetap menjaga sebuah integritas keamanan dari suatu aplikasi karena jika kedua aspek tersebut dihilangkan, aplikasi atau suatu sistem akan mudah dilakukan intrusi oleh oknum-oknum yang tidak bertanggung jawab. 
 
-## Penjelasan _Cookies_ dalam Konteks Aplikasi _Web_
+## D. Penjelasan _Cookies_ dalam Konteks Aplikasi _Web_
 _Cookies_ merupakan suatu istilah untuk kumpulan informasi yang berisi rekam jejak pengguna ketika mengunjungi situs _web_ tertentu. _Cookies_ berguna untuk menyimpan beberapa data, seperti menyimpan pengaturan situs _web_, menyimpan data _login_ pengguna, menampilkan iklan, dan menyediakan konten yang lebih personal kepada pengguna. Dalam penggunaan _cookies_, khususnya di Django, data dari sesi tidak disimpan langsung di _browser_. Data tersebut disimpan pada server terlebih dahulu di server. Django akan membuat _string_ unik sepanjang 32 karakter (_session key_) dan mengaitkannya dengan data sesi. Server kemudian mengirim _cookie_ bernama `sessionid` yang berisi _session key_ sebagai _value_ ke browser. Pada _request_ selanjutnya, _browser_ mengirimkan _cookie_ `sessionid` ke server dan Django kemudian akan menggunakan _cookie_ ini untuk mengambil data sesi dan membuatnya dapat diakses. 
 
-## Keamanan Penggunaan _Cookies_
+## E. Keamanan Penggunaan _Cookies_
 Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karena data yang dibawa _cookies_ tidak berubah ketika berpindah dari komputer ke suatu situs _web_ dan sebaliknya. Perpindahan data _cookies_ ini sama sekali tidak berpengaruh kepada komputer lokal. Namun, pengguna disarankan untuk menghindari situs-situs yang mencurigakan dan membaca secara keseluruhan tentang data-data apa saja yang disimpan di dalam _cookies_ agar data di _cookies_ tidak dimanfaatkan oleh oknum-oknum tidak bertanggung jawab.
 
-## Bonus
+## F. Bonus
 1. Berikut merupakan cuplikan kode dari `views.py`
 
     ```
@@ -1180,6 +1191,4 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
    #### Proses _Remove_
    ![bonus-rm-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/7437b45d-0316-435e-a85b-d5dd49cece50)
    ![bonus-rm-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/cb3ea7b8-c492-4b53-9754-af8a80e936c6)
-
-
-   
+</details>
