@@ -5,7 +5,7 @@ Tugas 2
 <br>
 
 # Tugas 2 PBP 2023
-## A. Implementasi Checklist
+## A. Implementasi _Checklist_
 ### Membuat Proyek Django
 
 1. Saya membuat sebuah folder khusus di komputer sebagai tempat proyek Django akan disimpan.
@@ -335,8 +335,8 @@ Tugas 3
 <br>
 
 # Tugas 3 PBP 2023
-## A. Implementasi Checklist
-### Membuat Form Input Data
+## A. Implementasi _Checklist_
+### Membuat _Form_ Input Data
 
 1. Sebelum saya membuat sebuah _form_ untuk menginput data baru ke dalam aplikasi, saya perlu membuat kerangka views sebagai _template_ dari sebuah laman di situs agar dapat mengurangi menulis kode secara berulang.
 
@@ -416,7 +416,7 @@ Tugas 3
     - `model = Card` berfungsi untuk menunjukkan model yang digunakan di _form_.
     - `fields = ["name", "amount", "price", "power", "energy_cost", "description"]` merupakan atribut-atribut yang dimiliki oleh model `Card`. 
 
-### Modifikasi 'views' dan _Routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
+### Modifikasi _Views_ dan _Routing_ URL untuk Melihat Objek Model yang Sudah Ditambahkan
 
 1. Pada _file_ `views.py` di folder `main`, perlu ditambahkan kode berikut,
 
@@ -664,6 +664,7 @@ JSON memiliki format yang cukup sederhana dalam penulisan jika dibandingkan deng
 ## F. Bonus
 Berikut merupakan tangkapan layar aplikasi yang terdapat petunjuk mengenai berapa banyak `Card` yang sudah ditambahkan ke dalam aplikasi.
 
+```
 def show_main(request):
     cards = Card.objects.all()
 
@@ -680,6 +681,7 @@ def show_main(request):
     }
 
     return render(request, "main.html", context)
+```
 
 ![bonus](https://github.com/FBimo/marpellus-cenep/assets/119420957/dcdf14d2-0ecf-472e-a10d-7cfeaa52f20b)
 </details>
@@ -691,7 +693,7 @@ Tugas 4
 <br>
 
 # Tugas 4 PBP 2023
-## A. Implementasi Checklist
+## A. Implementasi _Checklist_
 ### Mengimplementasikan Fungsi Registrasi
 
 1. Saya membuat fungsi dengan nama `register` yang menerima parameter `request` di `views.py` pada subdirektori `main`.
@@ -947,7 +949,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
 #### Akun Kedua
 ![ss-main-privAcc2](https://github.com/FBimo/marpellus-cenep/assets/119420957/9a641100-f25b-4df6-b4f0-8e2a76bbd3f2)
 
-### Menghubungkan Model Item dengan User
+### Menghubungkan Model `Item` dengan `User`
 > Perlu diketahui bahwa _term_ `Item` pada aplikasi saya adalah `Card`
 
 1. Saya perlu mengimpor `user` dengan kode berikut di `models.py` pada subdirektori `main`.
@@ -1009,7 +1011,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
 
 6. Selanjutnya saya dapat melakukan `python manage.py migrate` untuk mengaplikasikan migrasi yang dilakukan. 
 
-### Menampilkan Rincian Informasi ketika Pengguna _logged in_ dan Menerapkan _Cookies_ Seperti `last login` pada Halaman Utama Aplikasi
+### Menampilkan Rincian Informasi ketika Pengguna _logged in_ dan Menerapkan _Cookies_ Seperti `last_login` pada Halaman Utama Aplikasi
 
 1. Sebelum melakukan implementasi _cookies_, saya perlu mengimpor beberapa hal berikut di `views.py` pada subdirektori `main`
 
