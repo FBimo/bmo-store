@@ -693,6 +693,7 @@ def show_main(request):
 
 3. Selanjutnya, saya menambahkan isi dari fungsi `register` dengan kode berikut,
 
+    ```
     def register(request):
     form = UserCreationForm()
 
@@ -704,9 +705,10 @@ def show_main(request):
             return redirect('main:login')
     context = {'form':form}
     return render(request, 'register.html', context)
+    ```
 
     Ada beberapa istilah yang harus diperhatikan,
-    - `form = UserCreationForm(request.POST) ` digunakan untuk membuat `UserCreationForm``
+    - `form = UserCreationForm(request.POST) ` digunakan untuk membuat `UserCreationForm`
     - `form.is_valid()` digunakan untuk memvalidasi isi input dari _form_ tersebut.
     - `form.save()` digunakan untuk membuat dan menyimpan data dari _form_ tersebut.
     - `messages.success(request, 'Your account has been successfully created!)` berguna untuk menampilkan pesan kepada pengguna. 
@@ -759,18 +761,18 @@ def show_main(request):
     ...
     ```
 
-dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
+    dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
 
-    ```
-    urlpatterns = [
-        ...
-        path('register/', register, name='register'), 
-        ...
-    ]
-    
-    ```
+        ```
+        urlpatterns = [
+            ...
+            path('register/', register, name='register'), 
+            ...
+        ]
+        
+        ```
 
-### Mengimplementasikan Fungsi Login
+### Mengimplementasikan Fungsi _Login_
 1. Saya membuat fungsi dengan nama `login_user` yang menerima parameter `request` di `views.py` pada subdirektori `main`.
 
 2. Setelah itu saya perlu mengimpor `authenticate` dan `login` pada bagian paling atas.
@@ -784,6 +786,7 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
 
 3. Selanjutnya, saya menambahkan isi dari fungsi `login` dengan kode berikut,
 
+    ```
     def login_user(request):
         if request.method == 'POST':
             username = request.POST.get('username')
@@ -796,8 +799,9 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
                 messages.info(request, 'Sorry, incorrect username or password. Please try again.')
         context = {}
         return render(request, 'login.html', context)
+    ```
     
-    > `authenticate(request, username=username, password=password` berguna untuk melakukan autentikasi pengguna berdasarkan _username_ dan _password_ ketika _login_
+    > `authenticate(request, username=username, password=password` berguna untuk melakukan autentikasi pengguna berdasarkan _username_ dan _password_ ketika _login_.
 
 4. Setelah itu, saya membuat `login.html` pada folder `main/templates` dengan kode,
 
@@ -855,17 +859,17 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
     from main.views import login_user
     ```
 
-dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
+    dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
 
-    ```
-    urlpatterns = [
-        ...
-        path('login/', login_user, name='login'),
-        ...
-    ]
-    ```
+        ```
+        urlpatterns = [
+            ...
+            path('login/', login_user, name='login'),
+            ...
+        ]
+        ```
 
-### Mengimplementasikan Fungsi Logout
+### Mengimplementasikan Fungsi _Logout_
 1. Saya membuat fungsi dengan nama `logout_user` yang menerima parameter `request` di `views.py` pada subdirektori `main`.
 
 2. Setelah itu saya perlu mengimpor `logout`.
@@ -878,10 +882,12 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
 
 3. Selanjutnya, saya menambahkan isi dari fungsi `login` dengan kode berikut,
 
+    ```
     def logout_user(request):
         logout(request)
         return redirect('main:login')
-    
+    ```
+
     Ada beberapa istilah yang harus diperhatikan,
     - `logout(request)` digunakan menghapus sesi pengguna yang saat ini masuk.
     - `return redirect('main:login')` berguna untuk mengarahkan pengguna ke halaman _login_ dalam aplikasi Django.
@@ -898,7 +904,7 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
     ...
     ```
 
-5. Selanjutnya saya memperbarui `urls.py` pada `main` dengan menambahkan impor fungsi,
+5. Selanjutnya saya memperbarui `urls.py` pada subdirektori `main` dengan menambahkan impor fungsi,
 
     ```
     ...
@@ -906,18 +912,18 @@ dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
     ...
     ```
 
-dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
+    dan menambahkan `urlpatterns` untuk mengakses fungsi yang sudah diimpor tadi.
 
-    ```
-    urlpatterns = [
-        ...
-        path('logout/', logout_user, name='logout'),
-        ...
-    ]
-    
-    ```
+        ```
+        urlpatterns = [
+            ...
+            path('logout/', logout_user, name='logout'),
+            ...
+        ]
+        
+        ```
 
-### Membuat Dua Akun dengan Setiap Akun Memiliki Tiga Dummy Data
+### Membuat Dua Akun dengan Setiap Akun Memiliki Tiga _Dummy Data_
 
 Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki tiga _dummy data_,
 
@@ -943,7 +949,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
     ```
     > Kode di atas berguna untuk menghubungkan satu produk dengan satu _user_ melalui sebuah _relationship_ yang memastikan bahwa sebuah `Card` terasosiasikan dengan seorang _user_
 
-3. Pada `views.py`di direktori `main`, saya mengubah fungsi `create_product` menjadi,
+3. Pada `views.py` di direktori `main`, saya mengubah fungsi `create_product` menjadi,
 
     ```
     def create_product(request):
@@ -956,7 +962,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
             return HttpResponseRedirect(reverse('main:show_main'))
         ...
     ```
-    > Parameter `commit=False` yang berguna untuk mencegah Django agar tidak langsung menyimpan objek yang telah dibuat dari _form_ langsung ke _database_. Hal tersebut membuat kita dapat memodifikasi objek tersebut sebelum dilakukan penyimpanan di dalam _database_
+    > Parameter `commit=False` yang berguna untuk mencegah Django agar tidak langsung menyimpan objek yang telah dibuat dari _form_ langsung ke _database_. Hal tersebut membuat kita dapat memodifikasi objek tersebut sebelum dilakukan penyimpanan ke dalam _database_.
 
 4. Selanjutnya saya mengubah fungsi `show_main` menjadi sebagai berikut.
 
@@ -978,9 +984,8 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
     - `cards = Card.objects.filter(user=request.user)` berguna untuk menampilkan objek `Card` yang terasosiasikan dengan pengguna yang sedang _login_.
     - `'name': request.user.username` berguna untuk menampilkan _username_ pengguna yang _login_ pada halaman utama.
 
-5. Setelah itu, saya menyimpan semua perubahan dan melakukan migrasi model dengan `python manage.py makemigrations`
+5. Setelah itu, saya menyimpan semua perubahan dan melakukan migrasi model dengan `python manage.py makemigrations`. Namun, akan terjadi error ketika membuat migrasi, oleh karena itu saya perlu,
 
-    > Akan terjadi error ketika membuat migrasi, oleh karena itu saya perlu,
     - Mengetik angka `1` untuk menetapkan _default value_ pada _field user_.
     - Mengetik angka `1` lagi untuk menetapkan _user_ dengan ID 1 sesuai dengan yang sudah dibuat pada model.
 
@@ -1014,6 +1019,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
 
 3. Selanjutnya saya menambahkan `'last_login': request.COOKIES['last_login']` pada fungsi `show_main` ke dalam variabel `context`.
 
+    ```
     context = {
         'my_app': 'Marpellus Cenep',
         'name': request.user.username,
@@ -1022,16 +1028,19 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
         'total_cards': total_cards,
         'last_login': request.COOKIES['last_login']
     }
+    ```
 
     > `'last_login': request.COOKIES['last_login']` berguna untuk menambahkan informasi _cookie_ `last_login` pada _response_ yang akan ditampilkan di halaman _web_.
 
 4. Setelah itu saya mengubah fungsi `logput_user` dengan kode berikut.
 
+    ```
     def logout_user(request):
         logout(request)
         response = HttpResponseRedirect(reverse('main:login'))
         response.delete_cookie('last_login')
         return response
+    ```
     
     > `response.delete_cookie('last_login')` berguna untuk menghapus _cookie_ `last_login` saat pengguna _logout_.
 
@@ -1043,7 +1052,7 @@ Berikut merupakan bukti pembuatan dua akun dan masing-masing akun telah memiliki
     ...
     ```
 
-6. Setelah itu, saya dapat melakukan `python manage.py runserver` dan melakukan _login_ untuk melihat data _cookie_ yang tersimpan dengan fitur _inspect element_
+6. Setelah itu, saya dapat melakukan `python manage.py runserver` dan melakukan _login_ untuk melihat data _cookie_ yang tersimpan dengan fitur _inspect element_.
 
 [insert_picture]
 
@@ -1075,6 +1084,7 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
 ## Bonus
 1. Berikut merupakan cuplikan kode dari `views.py`
 
+    ```
     def increase_card(request, id):
         card = Card.objects.filter(user=request.user, pk=id).first()
         if card.amount > 0:
@@ -1099,6 +1109,7 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
             card.delete()
         
         return HttpResponseRedirect(reverse('main:show_main'))
+    ```
 
 2. Berikut merupakan cuplikan dari kode `urls.py`
 
@@ -1118,34 +1129,34 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
 
 3. Berikut merupakan cuplikan kode `main.html`
 
-```
-{% for card in cards %}
-    <tr>
-        <td>{{ card.name }}</td>
-        <td>
-            <a href="{% url 'main:increase_card' card.id %}">
-                <button >
-                    +
-                </button>
-            </a>
-            
-            {{ card.amount }}
+    ```
+    {% for card in cards %}
+        <tr>
+            <td>{{ card.name }}</td>
+            <td>
+                <a href="{% url 'main:increase_card' card.id %}">
+                    <button >
+                        +
+                    </button>
+                </a>
+                
+                {{ card.amount }}
 
-            <a href="{% url 'main:decrease_card' card.id %}">
-                <button >
-                    -
-                </button>
-            </a>
-        </td>
-        ...
-        <td>
-            <a href="{% url 'main:remove_card' card.id %}">
-                <button>
-                    remove card
-                </button>
-            </a>
-        </td>
-```
+                <a href="{% url 'main:decrease_card' card.id %}">
+                    <button >
+                        -
+                    </button>
+                </a>
+            </td>
+            ...
+            <td>
+                <a href="{% url 'main:remove_card' card.id %}">
+                    <button>
+                        remove card
+                    </button>
+                </a>
+            </td>
+    ```
 
 4. Berikut merupakan cuplikan halaman utama
 [insert_picture]
