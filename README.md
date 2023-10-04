@@ -1205,47 +1205,47 @@ Tugas 5
 1. Saya melakukan kustomisasi pada halaman _web_ menggunakan _file_ CSS eksternal, oleh karena itu diperlukan pengaturan terhadap _file-file_ tersebut.
 2. Pada `settings.py`, saya menambahkan kode berikut untuk menghubungkan _static files_ dengan aplikasi.
 
-```
-...
-    STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
-...
-```
+    ```
+    ...
+        STATICFILES_DIRS = [
+        BASE_DIR / "static",
+    ]
+    ...
+    ```
 3. Setelah itu, saya membuat direktori baru di _root_ dengan nama `static` yang akan berisi berbagai macam _static files_, salah satunya adalah _file_ CSS. Berikut merupakan potongan kode pada `login-style.css` yang berguna untuk melakukan  kustomisasi pada `login.html`.
 
-```
-.global-container {
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #48e248;
-}
+    ```
+    .global-container {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #48e248;
+    }
 
-.card-tittle,
-.card-text {
-    color: #48e248;
-}
+    .card-tittle,
+    .card-text {
+        color: #48e248;
+    }
 
-.login-form {
-    width: 380px;
-    height: 450px;
-    padding: 20px;
-    background-color: #1a2226 !important;
-    border-radius: 10px !important;
-}
+    .login-form {
+        width: 380px;
+        height: 450px;
+        padding: 20px;
+        background-color: #1a2226 !important;
+        border-radius: 10px !important;
+    }
 
-input[type="username"],
-input[type="password"] {
-    background: #1a2226;
-    color: #fff;
-    border: 2px solid #00ff00;
-    border-radius: 10px;
-    margin-bottom: 25px;
-}
-```
-> Kode di atas berada pada `static/css/`, pengklasifikasian dilakukan kembali karena _static files_ cukup beragam sehingga pemisahan ini akan sangat membantu untuk mengaturnya apabila ada jenis _static files_ baru yang ditambahkan. 
+    input[type="username"],
+    input[type="password"] {
+        background: #1a2226;
+        color: #fff;
+        border: 2px solid #00ff00;
+        border-radius: 10px;
+        margin-bottom: 25px;
+    }
+    ```
+    > Kode di atas berada pada `static/css/`, pengklasifikasian dilakukan kembali karena _static files_ cukup beragam sehingga pemisahan ini akan sangat membantu untuk mengaturnya apabila ada jenis _static files_ baru yang ditambahkan. 
 
 ## B. Manfaat _Element Selector_
 Dalam CSS, selector digunakan untuk memilih elemen HTML yang ingin kita beri style. Berikut adalah beberapa jenis selector dan manfaatnya:
@@ -1264,7 +1264,7 @@ Dalam CSS, selector digunakan untuk memilih elemen HTML yang ingin kita beri sty
 
 ## C. HTML5 _Tag(s)_
 | No. |       Tag        |                    Fungsi                         |
-|:--- |:----------------:|--------------------------------------------------:|
+|:--- |:----------------:|:-------------------------------------------------:|
 | 1.  | <! DOCTYPE html> |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
 | 2.  | <html>           |_Tag_ pembuka untuk membuat dokumen HTML           |
 | 3.  | <head>           |Informasi meta tentang dokumen                     |
