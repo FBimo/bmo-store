@@ -1191,4 +1191,114 @@ Dalam kondisi _default_, _cookies_ tidak bisa melakukan transfer _malware_ karen
    ![bonus-rm-1](https://github.com/FBimo/marpellus-cenep/assets/119420957/7437b45d-0316-435e-a85b-d5dd49cece50)
    ![bonus-rm-2](https://github.com/FBimo/marpellus-cenep/assets/119420957/cb3ea7b8-c492-4b53-9754-af8a80e936c6)
 </details>
-      
+
+<details>
+<summary> 
+Tugas 5
+</summary>
+<br>
+
+# Tugas 5 PBP 2023
+## A. Implementasi _Checklist_
+### Mengimplementasikan _Static Files_ pada Django
+
+1. Saya melakukan kustomisasi pada halaman _web_ menggunakan _file_ CSS eksternal, oleh karena itu diperlukan pengaturan terhadap _file-file_ tersebut.
+2. Pada `settings.py`, saya menambahkan kode berikut untuk menghubungkan _static files_ dengan aplikasi.
+
+```
+...
+    STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+...
+```
+3. Setelah itu, saya membuat direktori baru di _root_ dengan nama `static` yang akan berisi berbagai macam _static files_, salah satunya adalah _file_ CSS. Berikut merupakan potongan kode pada `login-style.css` yang berguna untuk melakukan  kustomisasi pada `login.html`.
+
+```
+.global-container {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #48e248;
+}
+
+.card-tittle,
+.card-text {
+    color: #48e248;
+}
+
+.login-form {
+    width: 380px;
+    height: 450px;
+    padding: 20px;
+    background-color: #1a2226 !important;
+    border-radius: 10px !important;
+}
+
+input[type="username"],
+input[type="password"] {
+    background: #1a2226;
+    color: #fff;
+    border: 2px solid #00ff00;
+    border-radius: 10px;
+    margin-bottom: 25px;
+}
+```
+> Kode di atas berada pada `static/css/`, pengklasifikasian dilakukan kembali karena _static files_ cukup beragam sehingga pemisahan ini akan sangat membantu untuk mengaturnya apabila ada jenis _static files_ baru yang ditambahkan. 
+
+## B. Manfaat _Element Selector_
+Dalam CSS, selector digunakan untuk memilih elemen HTML yang ingin kita beri style. Berikut adalah beberapa jenis selector dan manfaatnya:
+
+1. **Type Selector**: Berguna untuk memilih semua elemen dengan jenis tertentu. Misalnya, `p { color: blue; }` akan menerapkan warna biru ke semua elemen paragraf. Kita dapat menggunakan ini jika ingin menerapkan gaya pada elemen yang memiliki jenis yang sama.
+
+2. **Class Selector**: Berguna untuk memilih elemen berdasarkan kelasnya. Misalnya, `.myClass { color: red; }` akan menerapkan warna merah ke semua elemen dengan kelas "myClass". Kita dapat menggunakan ini ketika ingin menerapkan gaya ke sekelompok elemen yang memiliki kelas yang sama.
+
+3. **ID Selector**: Berguna untuk memilih satu elemen berdasarkan ID-nya. Misalnya, `#myID { color: yellow; }` akan menerapkan warna kuning ke elemen dengan ID "myID". Kita dapat menggunakan ini ketika ingin menerapkan gaya ke satu elemen spesifik.
+
+4. **Attribute Selector**: Berguna untuk memilih elemen berdasarkan atributnya. Misalnya, `[target='_blank'] { background-color: green; }` akan menerapkan warna latar belakang hijau ke semua elemen yang memiliki atribut target dengan nilai "_blank". Kita bisa menggunakan ini ketika ingin menerapkan gaya ke elemen berdasarkan atributnya.
+
+5. **Pseudo-class Selector**: Berguna untuk memilih elemen berdasarkan status tertentu, seperti _hover_ atau _focus_. Misalnya, `a:hover { color: black; }` akan menerapkan warna hitam ke tautan saat _mouse_ diarahkan ke atasnya. Kita dapat menggunakan ini ketika ingin menerapkan gaya berdasarkan status atau kondisi tertentu dari elemen.
+
+6. **Pseudo-element Selector**: Berguna untuk memilih bagian spesifik dari elemen, seperti `::first-line` atau `::before`. Misalnya, `p::first-line { font-weight: bold; }` akan menerapkan teks tebal ke baris pertama dari setiap paragraf. Kita dapat menggunakan ini ketika ingin menerapkan gaya ke bagian spesifik dari suatu elemen.
+
+## C. HTML5 _Tag(s)_
+| No. |       Tag        |                    Fungsi                         |
+|:--- |:----------------:|--------------------------------------------------:|
+| 1.  | <! DOCTYPE html> |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
+| 2.  | <html>           |_Tag_ pembuka untuk membuat dokumen HTML           |
+| 3.  | <head>           |Informasi meta tentang dokumen                     |
+| 4.  | <title>          |Membuat judul halaman                              | 
+| 5.  | <body>           |Menampung semua konten HTML                        |
+| 6.  | <h1> s/d <h6>    |Membuat judul atau _heading_                       |
+| 7.  | <p>              |Membuat paragraf                                   |
+| 8.  | <br>             |Membuat garis baru                                 |
+| 9.  | <img>            |Mendefinsikan gambar                               |
+| 10. | <input>          |Membuat tipe input pada _form_ yang dibuat         |
+| 11. | <label>          |Memberikan label pada elemen input                 |
+| 12. | <table>          |Membuat tabel pada _web_                           |
+| 13. | <tr>             |Membuat baris pada tabel                           |
+| 14. | <td>             |Membuat kolom pada tabel                           |
+| 15. | <th>             |Membuat judul pada kolom.                          |
+
+## D. Perbedaan _Margin_ dan _Padding_
+### _Margin_
+_Margin_ merupakan sisi terluar dari sebuah _element_. Dengan adanya _margin_, kita bisa mengatur jarak antar _element_ yang ada. Terdapat beberapa sisi luar _margin_, yaitu `margin-top`, `margin-bottom`, `margin-left`, dan `margin-right`.
+
+### _Padding_
+_Padding_ merupakan sisi dalam dari sebuah _element_. Dengan adanya _padding_ kita bisa mengatur jarak sisi dalam dari suatu _element_. Terdapat beberapa sisi dalam _padding_, yaitu `padding-top`, `padding-bottom`, `padding-left`, dan `padding-right`.
+
+## E. Perbedaan _Framework_ CSS Tailwind dan Bootstrap
+|        Boostrap        |                    Tailwind                       |
+|:-----------------------|-------------------------------------------:|
+|Memiliki ukuran _file_ yang
+lebih besar karena menyediakan
+banyak fitur dan komponen yang
+sudah siap pakai.|Memiliki ukuran _file_ yang lebih ringan karena hanya memuat kelas-kelas utilitas yang ada.|
+|Memiliki batasan dalam fleksibilitas
+desain yang unik. |Memiliki fleksibilitas yang lebih besar dengan pendekatan _utility first_ yang memungkinkan kita membangun desain yang sangat kustom.|
+|Ramah bagi pemula karena komponen-komponennya sudah didefinisikan.|Butuh pembelajaran lebih lanjut karena memerlukan pemahaman mengenai kelas-kelas utilitas yang ada dan cara bagaimana menggabungkannya.|
+
+Masing-masing _framework_ memiliki kelebihan dan kekurangannya masing-masing. Penggunaan kedua _framework_ ini sebenarnya dapat disesuaikan dengan kebutuhan pengembang. Apabiola pengembang ingin memiliki desain yang lebih stabil, cepat dalam pengimplementasian, dan ramah bagi pemula, maka Bootstrap merupakan pilihan cocok. Nmaun apabila pengembang lebih ingin bebas dalam memodifikasi aplikasinya, memerlukan _file_ yang ringan, dan sudah cukup paham dengan CSS, maka Tailwind CSS merupakan pilihan yang tepat. 
+
+</details>

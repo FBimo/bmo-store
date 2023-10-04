@@ -1,45 +1,44 @@
 {% extends 'base.html' %}
-
 {% block meta %}
     <title>Login</title>
 {% endblock meta %}
-
 {% block content %}
 
-<div class = "login">
+<div class="global-container">
+    <div class="card login-form">
+        <div class="card-body">
+            <h1 class="card-tittle text-center">L O G I N</h1>
+        </div>
+            
+        <div class="card-text">
+            <form method="POST" action="">
+                {% csrf_token %}
 
-    <h1>Login</h1>
-
-    <form method="POST" action="">
-        {% csrf_token %}
-        <table>
-            <tr>
-                <td>Username: </td>
-                <td><input type="text" name="username" placeholder="Username" class="form-control"></td>
-            </tr>
-                    
-            <tr>
-                <td>Password: </td>
-                <td><input type="password" name="password" placeholder="Password" class="form-control"></td>
-            </tr>
-
-            <tr>
-                <td></td>
-                <td><input class="btn login_btn" type="submit" value="Login"></td>
-            </tr>
-        </table>
-    </form>
-
-    {% if messages %}
-        <ul>
-            {% for message in messages %}
-                <li>{{ message }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}     
-        
-    Don't have an account yet? <a href="{% url 'main:register' %}">Register Now</a>
-
+                <div class="mb-3">
+                  <label for="exampleInputEmail1" class="form-label">Username</label>
+                  <input type="username" name="username" placeholder="Username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                  <label for="exampleInputPassword1" class="form-label">Password</label>
+                  <input type="password" name="password" placeholder="Password" class="form-control" id="exampleInputPassword1">
+                </div>
+                <div class="mb-3">
+                    Don't have an account yet? <a href="{% url 'main:register' %}" class="reg-link">Register Now</a>
+                            {% if messages %}
+                                <ul>
+                                    {% for message in messages %}
+                                        <li>{{ message }}</li>
+                                    {% endfor %}
+                                </ul>
+                            {% endif %}   
+                </div>
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" value="Login">Submit</button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}

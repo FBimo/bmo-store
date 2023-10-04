@@ -129,3 +129,4 @@ def remove_card(request, id):
         card.delete()
     
     return HttpResponseRedirect(reverse('main:show_main'))
+

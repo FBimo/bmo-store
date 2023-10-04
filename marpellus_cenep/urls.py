@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from marpellus_cenep.views import login_style
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main.urls')), 
+    path('', login_style),
 ]
