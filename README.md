@@ -1265,21 +1265,21 @@ Dalam CSS, selector digunakan untuk memilih elemen HTML yang ingin kita beri sty
 ## C. HTML5 _Tag(s)_
 | No. |       Tag        |                    Fungsi                         |
 |:--- |:----------------:|:-------------------------------------------------:|
-| 1.  | <! DOCTYPE html> |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
-| 2.  | <html>           |_Tag_ pembuka untuk membuat dokumen HTML           |
-| 3.  | <head>           |Informasi meta tentang dokumen                     |
-| 4.  | <title>          |Membuat judul halaman                              | 
-| 5.  | <body>           |Menampung semua konten HTML                        |
-| 6.  | <h1> s/d <h6>    |Membuat judul atau _heading_                       |
-| 7.  | <p>              |Membuat paragraf                                   |
-| 8.  | <br>             |Membuat garis baru                                 |
-| 9.  | <img>            |Mendefinsikan gambar                               |
-| 10. | <input>          |Membuat tipe input pada _form_ yang dibuat         |
-| 11. | <label>          |Memberikan label pada elemen input                 |
-| 12. | <table>          |Membuat tabel pada _web_                           |
-| 13. | <tr>             |Membuat baris pada tabel                           |
-| 14. | <td>             |Membuat kolom pada tabel                           |
-| 15. | <th>             |Membuat judul pada kolom.                          |
+| 1.  | `<! DOCTYPE html>` |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
+| 2.  | `<html> `          |_Tag_ pembuka untuk membuat dokumen HTML           |
+| 3.  | `<head>`           |Informasi meta tentang dokumen                     |
+| 4.  | `<title> `         |Membuat judul halaman                              | 
+| 5.  | `<body> `          |Menampung semua konten HTML                        |
+| 6.  | `<h1> s/d <h6>`    |Membuat judul atau _heading_                       |
+| 7.  | `<p> `             |Membuat paragraf                                   |
+| 8.  | `<br> `            |Membuat garis baru                                 |
+| 9.  | `<img>`            |Mendefinsikan gambar                               |
+| 10. | `<input> `         |Membuat tipe input pada _form_ yang dibuat         |
+| 11. | `<label> `         |Memberikan label pada elemen input                 |
+| 12. | `<table>`          |Membuat tabel pada _web_                           |
+| 13. | `<tr>  `           |Membuat baris pada tabel                           |
+| 14. | `<td> `            |Membuat kolom pada tabel                           |
+| 15. | `<th> `            |Membuat judul pada kolom.                          |
 
 ## D. Perbedaan _Margin_ dan _Padding_
 ### _Margin_
@@ -1289,8 +1289,8 @@ _Margin_ merupakan sisi terluar dari sebuah _element_. Dengan adanya _margin_, k
 _Padding_ merupakan sisi dalam dari sebuah _element_. Dengan adanya _padding_ kita bisa mengatur jarak sisi dalam dari suatu _element_. Terdapat beberapa sisi dalam _padding_, yaitu `padding-top`, `padding-bottom`, `padding-left`, dan `padding-right`.
 
 ## E. Perbedaan _Framework_ CSS Tailwind dan Bootstrap
-|                 Boostrap                   |                    Tailwind                |
-|:-------------------------------------------|:-------------------------------------------|
+|           Boostrap          |          Tailwind           |
+|:----------------------------|:----------------------------|
 |Memiliki ukuran _file_ yang lebih besar karena menyediakan banyak fitur dan komponen yang sudah siap pakai.|Memiliki ukuran _file_ yang lebih ringan karena hanya memuat kelas-kelas utilitas yang ada.|
 |Memiliki batasan dalam fleksibilitas desain yang unik. |Memiliki fleksibilitas yang lebih besar dengan pendekatan _utility first_ yang memungkinkan kita membangun desain yang sangat kustom.|
 |Ramah bagi pemula karena komponen-komponennya sudah didefinisikan.|Butuh pembelajaran lebih lanjut karena memerlukan pemahaman mengenai kelas-kelas utilitas yang ada dan cara bagaimana menggabungkannya.|
