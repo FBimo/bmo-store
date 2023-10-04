@@ -1289,14 +1289,10 @@ _Margin_ merupakan sisi terluar dari sebuah _element_. Dengan adanya _margin_, k
 _Padding_ merupakan sisi dalam dari sebuah _element_. Dengan adanya _padding_ kita bisa mengatur jarak sisi dalam dari suatu _element_. Terdapat beberapa sisi dalam _padding_, yaitu `padding-top`, `padding-bottom`, `padding-left`, dan `padding-right`.
 
 ## E. Perbedaan _Framework_ CSS Tailwind dan Bootstrap
-|        Boostrap        |                    Tailwind                       |
-|:-----------------------|-------------------------------------------:|
-|Memiliki ukuran _file_ yang
-lebih besar karena menyediakan
-banyak fitur dan komponen yang
-sudah siap pakai.|Memiliki ukuran _file_ yang lebih ringan karena hanya memuat kelas-kelas utilitas yang ada.|
-|Memiliki batasan dalam fleksibilitas
-desain yang unik. |Memiliki fleksibilitas yang lebih besar dengan pendekatan _utility first_ yang memungkinkan kita membangun desain yang sangat kustom.|
+|                 Boostrap                   |                    Tailwind                |
+|:-------------------------------------------|:-------------------------------------------|
+|Memiliki ukuran _file_ yang lebih besar karena menyediakan banyak fitur dan komponen yang sudah siap pakai.|Memiliki ukuran _file_ yang lebih ringan karena hanya memuat kelas-kelas utilitas yang ada.|
+|Memiliki batasan dalam fleksibilitas desain yang unik. |Memiliki fleksibilitas yang lebih besar dengan pendekatan _utility first_ yang memungkinkan kita membangun desain yang sangat kustom.|
 |Ramah bagi pemula karena komponen-komponennya sudah didefinisikan.|Butuh pembelajaran lebih lanjut karena memerlukan pemahaman mengenai kelas-kelas utilitas yang ada dan cara bagaimana menggabungkannya.|
 
 Masing-masing _framework_ memiliki kelebihan dan kekurangannya masing-masing. Penggunaan kedua _framework_ ini sebenarnya dapat disesuaikan dengan kebutuhan pengembang. Apabiola pengembang ingin memiliki desain yang lebih stabil, cepat dalam pengimplementasian, dan ramah bagi pemula, maka Bootstrap merupakan pilihan cocok. Nmaun apabila pengembang lebih ingin bebas dalam memodifikasi aplikasinya, memerlukan _file_ yang ringan, dan sudah cukup paham dengan CSS, maka Tailwind CSS merupakan pilihan yang tepat. 
