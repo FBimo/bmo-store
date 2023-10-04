@@ -1263,23 +1263,23 @@ Dalam CSS, selector digunakan untuk memilih elemen HTML yang ingin kita beri sty
 6. **Pseudo-element Selector**: Berguna untuk memilih bagian spesifik dari elemen, seperti `::first-line` atau `::before`. Misalnya, `p::first-line { font-weight: bold; }` akan menerapkan teks tebal ke baris pertama dari setiap paragraf. Kita dapat menggunakan ini ketika ingin menerapkan gaya ke bagian spesifik dari suatu elemen.
 
 ## C. HTML5 _Tag(s)_
-| No. |       Tag        |                    Fungsi                         |
-|:--- |:----------------:|:-------------------------------------------------:|
-| 1.  | `<! DOCTYPE html>` |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
-| 2.  | `<html> `          |_Tag_ pembuka untuk membuat dokumen HTML           |
-| 3.  | `<head>`           |Informasi meta tentang dokumen                     |
-| 4.  | `<title> `         |Membuat judul halaman                              | 
-| 5.  | `<body> `          |Menampung semua konten HTML                        |
-| 6.  | `<h1> s/d <h6>`    |Membuat judul atau _heading_                       |
-| 7.  | `<p> `             |Membuat paragraf                                   |
-| 8.  | `<br> `            |Membuat garis baru                                 |
-| 9.  | `<img>`            |Mendefinsikan gambar                               |
-| 10. | `<input> `         |Membuat tipe input pada _form_ yang dibuat         |
-| 11. | `<label> `         |Memberikan label pada elemen input                 |
-| 12. | `<table>`          |Membuat tabel pada _web_                           |
-| 13. | `<tr>  `           |Membuat baris pada tabel                           |
-| 14. | `<td> `            |Membuat kolom pada tabel                           |
-| 15. | `<th> `            |Membuat judul pada kolom.                          |
+| No. | Tag | Fungsi |
+|:--- |:---:|:---:|
+| 1. | `<! DOCTYPE html>` |Deklarasi untuk mendefinisikan dokumen menjadi HTML|
+| 2. | `<html> `          |_Tag_ pembuka untuk membuat dokumen HTML           |
+| 3. | `<head>`           |Informasi meta tentang dokumen                     |
+| 4. | `<title> `         |Membuat judul halaman                              | 
+| 5. | `<body> `          |Menampung semua konten HTML                        |
+| 6. | `<h1> s/d <h6>`    |Membuat judul atau _heading_                       |
+| 7. | `<p> `             |Membuat paragraf                                   |
+| 8. | `<br> `            |Membuat garis baru                                 |
+| 9. | `<img>`            |Mendefinsikan gambar                               |
+| 10.| `<input> `         |Membuat tipe input pada _form_ yang dibuat         |
+| 11.| `<label> `         |Memberikan label pada elemen input                 |
+| 12.| `<table>`          |Membuat tabel pada _web_                           |
+| 13.| `<tr>  `           |Membuat baris pada tabel                           |
+| 14.| `<td> `            |Membuat kolom pada tabel                           |
+| 15.| `<th> `            |Membuat judul pada kolom.                          |
 
 ## D. Perbedaan _Margin_ dan _Padding_
 ### _Margin_
