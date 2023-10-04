@@ -1290,7 +1290,7 @@ _Padding_ merupakan sisi dalam dari sebuah _element_. Dengan adanya _padding_ ki
 
 ## E. Perbedaan _Framework_ CSS Tailwind dan Bootstrap
 | Boostrap | Tailwind |
-|:---|:---|
+| --- | --- |
 |Memiliki ukuran _file_ yang lebih besar karena menyediakan banyak fitur dan komponen yang sudah siap pakai.|Memiliki ukuran _file_ yang lebih ringan karena hanya memuat kelas-kelas utilitas yang ada.|
 |Memiliki batasan dalam fleksibilitas desain yang unik. |Memiliki fleksibilitas yang lebih besar dengan pendekatan _utility first_ yang memungkinkan kita membangun desain yang sangat kustom.|
 |Ramah bagi pemula karena komponen-komponennya sudah didefinisikan.|Butuh pembelajaran lebih lanjut karena memerlukan pemahaman mengenai kelas-kelas utilitas yang ada dan cara bagaimana menggabungkannya.|
