@@ -1301,7 +1301,7 @@ Masing-masing _framework_ memiliki kelebihan dan kekurangannya masing-masing. Pe
 
 <details>
 <summary> 
-Tugas 5
+Tugas 6
 </summary>
 <br>
 
@@ -1482,6 +1482,6 @@ async function getProducts() {
  Kedua teknologi di atas memiliki kelebihannya masing-masing, namun mengingat pengembangan _web_ saat ini belum perlu menggunakan fitur-fitur jQuery, Fetch API masih merupakan pilihan yang cocok karena memang hanya berfokus pada penggunaan AJAX dan fitur-fitur yang ada di JavaScript serta tidak tergantung kepada _library_ pihak ketiga. 
 
 ## F. Tautan Aplikasi
-
+http://fazle-ilahi-tugas.pbp.cs.ui.ac.id
 
 </details>
