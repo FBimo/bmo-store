@@ -4,6 +4,7 @@ from main.views import register
 from main.views import login_user
 from main.views import logout_user
 from main.views import increase_card, decrease_card, remove_card
+from main.views import get_product_json, create_ajax
 
 app_name = 'main'
 
@@ -20,4 +21,6 @@ urlpatterns = [
     path('increase-card/<int:id>', increase_card, name='increase_card'),
     path('decrease-card/<int:id>', decrease_card, name='decrease_card'),
     path('remove-card/<int:id>', remove_card, name='remove_card'),
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-ajax/', create_ajax, name='create_ajax'), 
 ]

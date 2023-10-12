@@ -1298,3 +1298,190 @@ _Padding_ merupakan sisi dalam dari sebuah _element_. Dengan adanya _padding_ ki
 Masing-masing _framework_ memiliki kelebihan dan kekurangannya masing-masing. Penggunaan kedua _framework_ ini sebenarnya dapat disesuaikan dengan kebutuhan pengembang. Apabila pengembang ingin memiliki desain yang lebih stabil, cepat dalam pengimplementasian, dan ramah bagi pemula, maka Bootstrap merupakan pilihan cocok. Namun apabila pengembang lebih ingin bebas dalam memodifikasi aplikasinya, memerlukan _file_ yang ringan, dan sudah cukup paham dengan CSS, maka Tailwind CSS merupakan pilihan yang tepat. 
 
 </details>
+
+<details>
+<summary> 
+Tugas 5
+</summary>
+<br>
+
+# Tugas 6 PBP 2023
+## A. Implementasi _Checklist_
+### Implementasi AJAX GET
+1. Saya membuat fungsi yang pada `views.py` untuk mendapatkan data JSON dari setiap objek `Card` sebagai berikut,
+    ```
+    def get_product_json(request):
+    product_item = Card.objects.all()
+    return HttpResponse(serializers.serialize('json', product_item))
+    ```
+
+2. Dalam penerapannya, saya menggunakan fungsi di atas untuk mengambil semua `fields` data yang ada pada semua objek. Berikut merupakan cuplikan kodenya,
+
+    ```
+    function addProduct() {
+            fetch("{% url 'main:add_product_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            document.getElementById("form").reset()
+            return false
+        }
+    ```
+    > Singkatnya, kode di atas berguna untuk menambah produk baru dengan mengambil terlebih dahulu data-data yang sudah ada pada data JSON.
+
+### Implementasi AJAX POST
+1. Saya membuat modal terlebih dahulu berupa _form_ yang nantinya dapat diisikan data-data `fields` dari objek `Card` sebagai data untuk membuat objek `Card` baru. Berikut merupakan cuplikan kodenya,
+
+    ```
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="power" class="col-form-label">Power:</label>
+                            <input type="number" class="form-control" id="power" name="power"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="energy_cost" class="col-form-label">Energy Cost:</label>
+                            <input type="number" class="form-control" id="energy_cost" name="energy_cost"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+    ```
+2. Selanjutnya, saya membuat fungsi untuk menambahkan objek `Card` baru di dalam `views.py`. Berikut merupakan cuplikan kodenya,
+
+    ```
+    @csrf_exempt
+    def create_ajax(request):
+        if request.method == 'POST':
+            name = request.POST.get("name")
+            amount = request.POST.get("amount")
+            price = request.POST.get("price")
+            power = request.POST.get("power")
+            energy_cost = request.POST.get("energy_cost")
+            description = request.POST.get("description")
+            user = request.user
+
+            new_product = Card(name=name, amount=amount, price=price, power=power, energy_cost=energy_cost, description=description, user=user)
+            new_product.save()
+
+            return HttpResponse(b"CREATED", status=201)
+
+        return HttpResponseNotFound()
+    
+    ```
+3. Setelah itu, saya membuat _path_ di `urls.py` untuk menghubungkan dengan _form_ yang telah dibuat pada modal sebelumnya dengan menambahkan kode berikut,
+
+    ```
+    ...
+    from main.views import get_product_json, create_ajax
+
+    ...
+    urlpatterns = [
+    ...
+    path('get-product/', get_product_json, name='get_product_json'),
+    path('create-ajax/', create_ajax, name='create_ajax'), 
+    ]
+    ```
+
+### Implementasi `collectstatic`
+1. Saya menambahkan kode di bawah pada `settings.py` sebagai tempat penyimpanan semua _file static_.
+
+    ```
+    STATIC_ROOT = BASE_DIR / 'staticfiles'
+    ```
+2. Setelah itu saya menjalankan perintah,
+    ```
+    python manage.py collectstatic
+    ```
+    > Perintah `collectstatic` digunakan untuk menyimpan seluruh _file static_ yang digunakan pada aplikasi
+
+## B. Perbedaan antara _Asynchronous Programming_ dengan _Synchronous Programming_
+_Asynchronous Programming_ dan _Synchronous Programming_ merupakan dua paradigma pemrograman yang berbeda dalam mengelola dan mengeksekusi suatu program. Berikut perbedaannya,
+
+### _Asynchronous Programming_
+- Pemrograman asinkron dapat melakukan banyak proses secara bersamaan tanpa harus menunggu proses lainnya jika belum selesai
+- Waktu eksekusi program dapat dikatakan lebih cepat dan mampu meningkatkan responsivitas aplikasi.
+
+### _Synchronous Programming_
+- Pemrograman sinkron melakukan proses secara sekuensial, artinya proses dilakukan secara urutan. Suatu proses harus menunggu proses lainnya yang belum selesai jika ingin melanjutkan ke eksekusi selanjutnya.
+- Waktu eksekusi bisa jadi menjadi lebih lama namun mudah untuk dilakukan _debugging_ karena alurnya yang berurutan. 
+
+## C. Paradigma _Event-driven Programming_ pada JavaScript dan AJAX
+Paradigma _event-driven programming_ adalah suatu pendekatan dalam pemrograman terkait eksekusi program. Eksekusi program dalam paradigma ini ditentukan oleh _events_ atau tindakan pengguna terhadap program, contohnya seperti mengeklik suuatu _button_ sehingga program akan menjalankan perintah. Berikut merupakan contoh dari penerapan _event-driven programming_ pada JavaScript dan AJAX,
+
+```
+refreshProducts()
+
+function addProduct() {
+    fetch("{% url 'main:create_ajax' %}", {
+        method: "POST",
+        body: new FormData(document.querySelector('#form'))
+    }).then(refreshProducts)
+
+    document.getElementById("form").reset()
+    return false
+}
+
+document.getElementById("button_add").onclick = addProduct
+```
+> `.onclick` memberi perintah kepada program apabila ada aksi mengeklik yang dilakukan pengguna, `addProduct` akan diproses.
+
+## D. Penerapan _Asynchronous Programming_ pada AJAX
+Penerapan dari _asynchronous programming_ merupakan keutamaan dari penggunaan AJAX. AJAX dapat memadukan peramban _web_ dengan JavaScript dan HTML DOM untuk menampilkan data. Dalam mengirim data, AJAX dapat menggunakan baik XML maupun JSON. AJAX memungkinkan adanya pembaruan data secara asinkronus sehingga kita tidak perlu melakukan _reload_ suatu halaman _web_ secara penuh agar data yang baru muncul. Berikut merupakan salah satu contoh penerapannya,
+
+```
+async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+            }
+```
+> Fungsi `fetch()` berguna untuk mengambil data API ke data JSON lalu `then()` akan melakukan _parse_ pada data JSON untuk diolah menjadi objek JavaScript. 
+
+## E. Perbandingan Fetch API dengan _library_ jQuery pada Penerapan AJAX
+1. jQuery
+    - Menyediakan _library_ JavaScript yang lebih besar dan memiliki fitur tambahan selain AJAX walaupun memang dapat memengaruhi ukuran total sutau proyek.
+    - Menggunakan sintaksis yang lebih tua dengan _callback functions_.
+    - Cocok untuk proyek kompleks yang sudah menggunakan jQuery sebelumnya dan menggunakan fitur-fitur yang disediakan oleh jQuery. 
+2. Fetch API
+    - Bagian dari JavaScript modern yang sudah didukung oleh semua _browser_ utama.
+    - Menggunakan sintaksis yang lebih baru dan modern sehingga pengelolaan kode asinkron dapat dikatakan lebih mudah dibandingkan dengan _callback-based code_.
+    - Cocok untuk proyek yang memang hanya berfokus untuk penggunaan AJAX dan ingin menggunakan fitur-fitur terbaru dari JavaScript. 
+
+ Kedua teknologi di atas memiliki kelebihannya masing-masing, namun mengingat pengembangan _web_ saat ini belum perlu menggunakan fitur-fitur jQuery, Fetch API masih merupakan pilihan yang cocok karena memang hanya berfokus pada penggunaan AJAX dan fitur-fitur yang ada di JavaScript serta tidak tergantung kepada _library_ pihak ketiga. 
+
+## F. Tautan Aplikasi
+
+
+</details>

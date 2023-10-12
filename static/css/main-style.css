@@ -1,0 +1,127 @@
+/* * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.main-container {
+    width: 1100px;
+    max-width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1.5;
+    margin: 0 auto;
+}
+.main-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+.main-card {
+    flex: 1 1 21rem;
+    margin: 10px 20px;
+    background: #f7f5f5;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+}
+.main-card h4 {
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    margin: 10px 0;
+}
+.card p {
+    margin-bottom: 10px;
+}
+
+.main-card .main-btn {
+    display: inline-block;
+    text-align: center;
+    padding: 10px 20px;
+    border-radius: 5px;
+    -webkit-border-radius: 5px;
+    -m02-border-radius: 5px;
+
+} */
+
+.btn #rm-btn {
+    color: #fff !important;
+    background-color: red !important;
+}
+
+/* .navbar-brand {
+    color: #fff;
+} */
+
+.main-btn {
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px !important;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.main-btn:hover {
+    background-color: #ffffff20;
+    color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px !important;
+}
+
+.navbar-toggler-icon {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255, 255, 255, 0.75%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+    font-size: 1rem;
+}
+
+#add-btn {
+    display: contents;
+    justify-content: center;
+    text-align: center;
+}
+
+.logged-user {
+    font-size: xx-large;
+    font-weight: bold;
+}
+
+.btn {
+    color: #fff;
+    background-color: #000;
+    border: 2px solid #000;
+    transform: translateY(10px);
+    font-size: 16px;
+    border-radius: 10px !important;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+.btn:hover {
+    background-color: #00000011;
+    color: #000;
+    border: 2px solid #000;
+    font-size: 16px;
+    border-radius: 10px !important;
+}
+
+/* .rmv-btn {
+    color: #000;
+    background-color: #fff;
+    border: 2px solid #000;
+    border-radius: 10px !important;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.4s;
+} */
+
+/* .rm-btn:hover {
+    background-color: #00000011;
+    color: #000;
+    border: 2px solid #000;
+    font-size: 16px;
+    border-radius: 10px !important;
+} */

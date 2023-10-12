@@ -1,9 +1,90 @@
 {% extends 'base.html' %}
+{% load static %}
+
 
 {% block content %}
-    <h1><b>{{my_app}}</b></h1>
 
-    <h5>Name: </h5>
+{% include 'navbar.html' %}
+<!-- <link href="{% static 'main/css/create-product-style.css' %}" rel="stylesheet">
+<link href="{% static 'main/css/main-style.css' %}" rel="stylesheet"> -->
+
+<style>
+
+    #rm-btn {
+        border: 5px;
+        margin-right: 12px;
+    }
+   
+    #rm-btn:hover {
+    background-color: rgb(255, 0, 0);
+    color: white;
+    }
+
+    .pagination {
+    display: flex;
+    justify-content:center;
+    gap: 2px;
+    }
+
+    .div-rm {
+        display: flex;
+        margin-top: 5px;
+        justify-content: center;
+    }
+
+    /* .pag-1 {
+        display: flex;
+        justify-content: flex-end;
+    } */
+
+    .div-ul {
+        display: flex;
+        justify-content: flex-start;
+    }
+
+</style>
+
+    <div class="container">
+        <div class="row gy-3 my-3" id="card-row">
+            <!-- <p class="logged-user">Welcome {{name}}</p>
+            <P>Your inventory: {{total_cards}} card(s)</P>
+            {%for card in cards%}
+                <div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://www.techcnews.com/wp-content/uploads/2019/09/Gundala-poster.jpg" class="card-img-top" alt="Gundala">
+                        <div class="card-body">
+                            <h5 class="card-title">{{card.name}}</h5>
+                            <p class="card-text">{{card.power}}</p>
+                            <p class="card-text">{{card.energy_cost}}</p>
+                            <p class="card-text">{{card.price}} Cr</p>
+                            <p class="card-text">{{card.description}}</p>
+                            <nav aria-label="..." class="pag-1">
+                                <ul>
+                                    <div class="div-ul">
+                                        <ul class="pagination pagination-m">
+                                            <li class="page-item"><a class="btn page-link" href="{% url 'main:decrease_card' card.id %}">-</a></li>
+                                            <li class="page-item"><a class="btn disabled" href="#">{{card.amount}}</a></li>
+                                            <li class="page-item"><a class="btn page-link" href="{% url 'main:increase_card' card.id %}">+</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="div-rm">
+                                        <a class="btn" id="rm-btn" href="{% url 'main:remove_card' card.id %}">Remove</a>
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+            {%endfor%}
+            <a href="{% url 'main:create_product' %}">
+                <button class="btn" id="add-button">
+                    Add New Card
+                </button>
+            </a> -->
+        </div>
+    </div>
+
+    <!-- <h5>Name: </h5>
     <p>{{ name }}<p>
     <h5>Class: </h5>
     <p>{{ class }}<p>
@@ -59,17 +140,119 @@
 
         <h5>Sesi terakhir login: {{ last_login }}</h5>
 
-        <br />
+        <br />-->
         
-        <a href="{% url 'main:create_product' %}">
-            <button>
-                Add New Card
-            </button>
-            <a href="{% url 'main:logout' %}">
+        <!-- <a href="{% url 'main:create_product' %}">
+            
+             <a href="{% url 'main:logout' %}">
                 <button>
                     Logout
                 </button>
             </a>
-        </a>
+        </a> -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="form" onsubmit="return false;">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label for="name" class="col-form-label">Name:</label>
+                            <input type="text" class="form-control" id="name" name="name"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="amount" class="col-form-label">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="price" class="col-form-label">Price:</label>
+                            <input type="number" class="form-control" id="price" name="price"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="power" class="col-form-label">Power:</label>
+                            <input type="number" class="form-control" id="power" name="power"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="energy_cost" class="col-form-label">Energy Cost:</label>
+                            <input type="number" class="form-control" id="energy_cost" name="energy_cost"></input>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="col-form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
+
+    <script>
+        async function getProducts() {
+            return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
+        }
+
+        async function refreshProducts() {
+            document.getElementById("card-row").innerHTML = ""
+            const products = await getProducts()
+            let htmlString = `<p class="logged-user">Welcome {{name}}</p>
+            <P>Your inventory: {{total_cards}} card(s)</P>`
+
+            products.forEach((item) => {
+                htmlString += `\n<div class="col-sm-6 col-md-4 col-lg-3">
+                    <div class="card h-100">
+                        <img src="https://www.techcnews.com/wp-content/uploads/2019/09/Gundala-poster.jpg" class="card-img-top" alt="Gundala">
+                        <div class="card-body">
+                            <h5 class="card-title">${item.fields.name}</h5>
+                            <p class="card-text">${item.fields.power}</p>
+                            <p class="card-text">${item.fields.energy_cost}</p>
+                            <p class="card-text">${item.fields.price} Cr</p>
+                            <p class="card-text">${item.fields.description}</p>
+                            <nav aria-label="..." class="pag-1">
+                                <ul>
+                                    <div class="div-ul">
+                                        <ul class="pagination pagination-m">
+                                            <li class="page-item"><a class="btn page-link">-</a></li>
+                                            <li class="page-item"><a class="btn disabled" href="#">${item.fields.amount}</a></li>
+                                            <li class="page-item"><a class="btn page-link">+</a></li>
+                                        </ul>
+                                    </div>
+                                    <div class="div-rm">
+                                        <a class="btn" id="rm-btn">Remove</a>
+                                    </div>
+                                </ul>
+                            </nav>
+                        </div>
+                    </div>
+                </div>` 
+            })
+        
+            document.getElementById("card-row").innerHTML = htmlString
+        }
+
+        refreshProducts()
+
+        function addProduct() {
+            fetch("{% url 'main:create_ajax' %}", {
+                method: "POST",
+                body: new FormData(document.querySelector('#form'))
+            }).then(refreshProducts)
+
+            document.getElementById("form").reset()
+            return false
+        }
+
+        document.getElementById("button_add").onclick = addProduct
+
+    </script>
         
 {% endblock content %}

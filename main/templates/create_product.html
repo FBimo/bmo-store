@@ -1,18 +1,73 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 
-<h1>Add New Card(s)</h1>
+{% include 'navbar.html' %}
+<!-- <link href="{% static 'main/css/create-product-style.css' %}" rel="stylesheet">
+<link href="{% static 'main/css/main-style.css' %}" rel="stylesheet"> -->
+
+<div class="global-container-create">
+    <div class="card create-form">
+        <div class="card-body-login">
+            <h1 class="card-title text-center">Add New Card</h1>
+        </div>
+            
+        <div class="card-text-create">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Card Name</label>
+                    {{form.name}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Amount</label>
+                    {{form.amount}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Price</label>
+                    {{form.price}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Power</label>
+                    {{form.power}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Energy Cost</label>
+                    {{form.energy_cost}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Description</label>
+                    {{form.description}}
+                </div>
+                <!-- <div class="mb-3">
+                    Already have an account? <a href="{% url 'main:login' %}" class="reg-link">Login Here</a>   
+                </div> -->
+                {% if form.errors %}
+                    <div class="errorlist">
+                        {{ form.custom_error_display|safe }}
+                    </div>
+                {% endif %}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" value="Add Card">Add Card</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- <h3>Add New Card</h3>
 <br></br>
 <div class="form-group">
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        <button class="btn btn-secondary">Daftar</button>
+        <button class="btn btn-secondary" value="Add Card">Add Card</button>
     </form>
-</div>
+</div> -->
 
-<h1>Add New Card</h1>
+<!-- <h3>Add New Card</h3>
 
 <form method="POST">
     {% csrf_token %}
@@ -21,10 +76,10 @@
         <tr>
             <td></td>
             <td>
-                <input type="submit" value="Add Card"/>
+                <input type="submit" class="btn" value="Add Card"/>
             </td>
         </tr>
     </table>
-</form>
+</form> -->
 
 {% endblock %}

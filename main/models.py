@@ -25,6 +25,4 @@ class Card(models.Model):
             self.amount += 1
         else:
             self.amount -= 1
-
-
     

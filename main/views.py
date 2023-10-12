@@ -1,17 +1,18 @@
 import datetime
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from main.forms import ProductForm
 from main.models import Card
 from django.urls import reverse
 from django.http import HttpResponse
 from django.core import serializers
-from django.shortcuts import redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
+from .forms import RegisterForm
+from django.views.decorators.csrf import csrf_exempt
 
 
 # Create your views here.
@@ -30,7 +31,7 @@ def show_main(request):
         'class': 'PBP C',
         'cards': cards,
         'total_cards': total_cards,
-        'last_login': request.COOKIES['last_login']
+        # 'last_login': request.COOKIES['last_login']
     }
 
     return render(request, "main.html", context)
@@ -70,14 +71,15 @@ def show_json_by_id(request, id):
 
 
 def register(request):
-    form = UserCreationForm()
+    form = RegisterForm()
 
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your account has been successfully created!')
             return redirect('main:login')
+            
     context = {'form':form}
     return render(request, 'register.html', context)
 
@@ -124,9 +126,31 @@ def decrease_card(request, id):
 
 
 def remove_card(request, id):
-    card = Card.objects.filter(user=request.user, pk=id).first()
+    card = Card.objects.filter(user=request.user, pk=id).get(pk = id)
     if card.amount > 0:
         card.delete()
     
     return HttpResponseRedirect(reverse('main:show_main'))
+
+def get_product_json(request):
+    cards = Card.objects.all()
+    return HttpResponse(serializers.serialize('json', cards))
+
+@csrf_exempt
+def create_ajax(request):
+    if request.method == 'POST':
+        name = request.POST.get("name")
+        amount = request.POST.get("amount")
+        price = request.POST.get("price")
+        power = request.POST.get("power")
+        energy_cost = request.POST.get("energy_cost")
+        description = request.POST.get("description")
+        user = request.user
+
+        new_product = Card(name=name, amount=amount, price=price, power=power, energy_cost=energy_cost, description=description, user=user)
+        new_product.save()
+
+        return HttpResponse(b"CREATED", status=201)
+
+    return HttpResponseNotFound()
 

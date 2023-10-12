@@ -1,33 +1,123 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block meta %}
+<!-- <link href="{% static 'main/css/login-style.css' %}" rel="stylesheet">
+<link href="{% static 'main/css/register-style.css' %}" rel="stylesheet"> -->
+
     <title>Register</title>
 {% endblock meta %}
 
 {% block content %}
 
-<div class = "login">
+<div class="global-container-reg">
+    <div class="card reg-form">
+        <div class="card-body-login">
+            <h1 class="card-title text-center">REGISTER</h1>
+        </div>
+            
+        <div class="card-text-reg">
+            <form method="POST" action="">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Username</label>
+                    {{form.username}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email</label>
+                    {{form.email}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword1" class="form-label">Password</label>
+                    {{form.password1}}
+                </div>
+                <div class="mb-3">
+                    <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                    {{form.password2}}
+                </div>
+                <div class="mb-3">
+                    Already have an account? <a href="{% url 'main:login' %}" class="reg-link">Login Here</a>   
+                </div>
+                {% if form.errors %}
+                    <div class="errorlist">
+                        {{ form.custom_error_display|safe }}
+                    </div>
+                {% endif %}
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-primary" value="Register">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!--<div class = "login">
     
-    <h1>Register</h1>  
+    <h1>Register</h1> 
 
-        <form method="POST" >  
+    <form method="POST" action="">
+        {% csrf_token %}
+        
+        {{form.username.label}}
+        {{form.username}}
+
+        {{form.email.label}}
+        {{form.email}}
+
+        {{form.password1.label}}
+        {{form.password1}}
+
+        {{form.password2.label}}
+        {{form.password2}}
+
+        <input type="submit" name="Register">
+    </form>-->
+
+        <!--<form method="POST" >  
             {% csrf_token %}  
-            <table>  
-                {{ form.as_table }}  
-                <tr>  
-                    <td></td>
-                    <td><input type="submit" name="submit" value="Daftar"/></td>  
-                </tr>  
-            </table>  
-        </form>>
+            {{ form.field_name }}    
+            <input type="submit" name="submit" value="Daftar"/>   
+        </form>>-->
 
-    {% if messages %}  
+        <!--<form method="POST" action="." class="login-form spacer" id="signup-form">
+            {% csrf_token %}
+            
+            <div class="input-group"> 
+                <img class="icon input-icon" src="icons/profile-user.svg" alt=""> 
+                <div class="username-input">
+                    {{form.username}}
+                </div>
+                
+            </div> 
+            <div class="input-group"> 
+                <img class="icon input-icon" src="icons/key.svg" alt=""> 
+                <div class="password1-input">
+                    {{form.password1}}
+                    {% if messages %}  
+                    {% for message in messages %}  
+                        <li>{{ message }}</li>  
+                        {% endfor %}
+                {% endif %}
+                </div>
+            </div> 
+            <div class="input-group"> 
+                <img class="icon input-icon" src="icons/key.svg" alt=""> 
+                <div class="password2-input">
+                    {{form.password2}}
+                </div>
+            </div> 
+            <input type="submit" class="submit" value="Signup"> 
+        </form>-->
+    
+
+    <!--{% if messages %}  
         <ul>   
             {% for message in messages %}  
                 <li>{{ message }}</li>  
                 {% endfor %}  
         </ul>   
-    {% endif %}
+    {% endif %}-->
 
 </div>  
 
