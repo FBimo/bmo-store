@@ -42,6 +42,21 @@
         justify-content: flex-start;
     }
 
+    .modal-header {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    #create-card {
+        max-width: fit-content;
+    }
+
+    .card-option {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
 </style>
 
     <div class="container">
@@ -154,8 +169,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Add New Product</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <div><h1 class="modal-title fs-5" id="exampleModalLabel">Add New Card</h1></div>
+                    <div><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
                 </div>
                 <div class="modal-body">
                     <form id="form" onsubmit="return false;">
@@ -188,27 +203,40 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Product</button>
+                    <button type="button" class="btn btn-primary" id="button_add" data-bs-dismiss="modal">Add Card</button>
                 </div>
             </div>
         </div>
     </div>
-
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Add Product by AJAX</button>
 
     <script>
         async function getProducts() {
             return fetch("{% url 'main:get_product_json' %}").then((res) => res.json())
         }
 
+        async function countCard() {
+            let string = "Your Inventory: "
+            const products = await getProducts()
+            let productCount = 0
+            products.forEach((item) => {
+                productCount += 1
+            })
+            string += String(productCount) + " card(s)"
+            document.getElementById("card-count").innerHTML = string
+        }
+
         async function refreshProducts() {
             document.getElementById("card-row").innerHTML = ""
             const products = await getProducts()
+            let productCount = 0
+            products.forEach((item) => {
+                productCount += 1
+            })
             let htmlString = `<p class="logged-user">Welcome {{name}}</p>
-            <P>Your inventory: {{total_cards}} card(s)</P>`
+            <P id="card-count">Your inventory: ${productCount} card(s)</P>`
 
             products.forEach((item) => {
-                htmlString += `\n<div class="col-sm-6 col-md-4 col-lg-3">
+                htmlString += `\n<div class="col-sm-6 col-md-4 col-lg-3" id="card${item.pk}">
                     <div class="card h-100">
                         <img src="https://www.techcnews.com/wp-content/uploads/2019/09/Gundala-poster.jpg" class="card-img-top" alt="Gundala">
                         <div class="card-body">
@@ -218,16 +246,16 @@
                             <p class="card-text">${item.fields.price} Cr</p>
                             <p class="card-text">${item.fields.description}</p>
                             <nav aria-label="..." class="pag-1">
-                                <ul>
+                                <ul class="card-option">
                                     <div class="div-ul">
                                         <ul class="pagination pagination-m">
-                                            <li class="page-item"><a class="btn page-link">-</a></li>
-                                            <li class="page-item"><a class="btn disabled" href="#">${item.fields.amount}</a></li>
-                                            <li class="page-item"><a class="btn page-link">+</a></li>
+                                            <li class="page-item"><a class="btn page-link" id="qty-btn" onclick="modifyQty(${item.pk}, '-')">-</a></li>
+                                            <li class="page-item"><a class="btn disabled" id="${item.pk}">${item.fields.amount}</a></li>
+                                            <li class="page-item"><a class="btn page-link" id="qty-btn" onclick="modifyQty(${item.pk}, '+')">+</a></li>
                                         </ul>
                                     </div>
                                     <div class="div-rm">
-                                        <a class="btn" id="rm-btn">Remove</a>
+                                        <a class="btn" id="rm-btn" onclick="removeCard(${item.pk})">Remove</a>
                                     </div>
                                 </ul>
                             </nav>
@@ -235,8 +263,39 @@
                     </div>
                 </div>` 
             })
+            htmlString += '\n<a><button type="button" class="btn btn-primary" id="create-card" data-bs-toggle="modal" data-bs-target="#exampleModal">Add New Card</button></a>'
         
             document.getElementById("card-row").innerHTML = htmlString
+        }
+
+        async function removeCard(id) {
+            let url="{% url 'main:remove_product_ajax' '0' %}";
+            let count = 0
+            url=url.replace('0',id);
+            const response =await fetch(url,{
+                method: "DELETE",
+            }).then(countCard)
+            document.getElementById("card" + String(id)).innerHTML = ''
+        }
+
+        async function modifyQty(id, symbol) {
+            let curr = document.getElementById(String(id)).innerHTML;
+            
+            if (symbol == "-") {
+                let url="{% url 'main:modify_quantity_ajax' '0' '-' %}";
+                url=url.replace('0',id);
+                const response =await fetch(url,{
+                    method: "POST",
+                })
+                document.getElementById(String(id)).innerHTML = Number(curr) - 1;
+            } else {
+                let url="{% url 'main:modify_quantity_ajax' '0' '+' %}";
+                url=url.replace('0',id);
+                const response =await fetch(url,{
+                    method: "POST",
+                })
+                document.getElementById(String(id)).innerHTML = Number(curr) + 1;
+            }
         }
 
         refreshProducts()

@@ -13,6 +13,8 @@ from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
 from .forms import RegisterForm
 from django.views.decorators.csrf import csrf_exempt
+from django.http import JsonResponse
+
 
 
 # Create your views here.
@@ -133,7 +135,7 @@ def remove_card(request, id):
     return HttpResponseRedirect(reverse('main:show_main'))
 
 def get_product_json(request):
-    cards = Card.objects.all()
+    cards = Card.objects.filter(user=request.user)
     return HttpResponse(serializers.serialize('json', cards))
 
 @csrf_exempt
@@ -153,4 +155,35 @@ def create_ajax(request):
         return HttpResponse(b"CREATED", status=201)
 
     return HttpResponseNotFound()
+
+@csrf_exempt
+def remove_product_ajax(request, id):
+    try:
+        product = Card.objects.get(pk=id)
+        product.delete()
+        return JsonResponse({'message': 'Product removed successfully'})
+    except Card.DoesNotExist:
+        return JsonResponse({'message': 'Product not found'}, status=404)
+
+@csrf_exempt
+def modify_quantity_ajax(request, id, symbol):
+    try:
+        product = Card.objects.get(pk=id)
+        if symbol == "-" and product.amount > 0:
+            product.amount -= 1
+            product.save()
+            return JsonResponse({'message': 'Decreament success'})
+        
+        elif symbol == "+" and product.amount > 0:
+            product.amount += 1
+            product.save()
+            return JsonResponse({'message': 'Increament success'})
+        
+        else:
+            raise Card.DoesNotExist
+        
+    except Card.DoesNotExist:
+        return JsonResponse({'message': 'Card not found'}, status=404)
+    
+
 
