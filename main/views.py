@@ -1,4 +1,5 @@
 import datetime
+import json
 from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect
 from main.forms import ProductForm
@@ -184,6 +185,28 @@ def modify_quantity_ajax(request, id, symbol):
         
     except Card.DoesNotExist:
         return JsonResponse({'message': 'Card not found'}, status=404)
+
+@csrf_exempt
+def create_product_flutter(request):
+    if request.method == 'POST':
+        
+        data = json.loads(request.body)
+
+        new_product = Card.objects.create(
+            user = request.user,
+            name = data["name"],
+            amount = int(data["amount"]),
+            price = int(data["price"]),
+            power = int(data["power"]),
+            energy_cost = int(data["energy_cost"]),
+            description = data["description"]
+        )
+
+        new_product.save()
+
+        return JsonResponse({"status": "success"}, status=200)
+    else:
+        return JsonResponse({"status": "error"}, status=401)
     
 
 
